@@ -1,27 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import AppHeader from './AppHeader';
 import NavBar from './NavBar';
-import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      courses: [],
+      filters: [],
+      filterText:'',
+      pdfUploaded: false,
+    };
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <NavBar title="WAT-Transcript"/>
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {/* <NavBar title="WAT-Transcript" 
+                filterText={this.state.filterText} 
+                onFilterTextChange={this.handleFilterTextChange}
+        /> */}
+        <AppHeader />
+        
       </div>
     );
   }

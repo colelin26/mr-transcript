@@ -88,7 +88,9 @@ function SearchAppBar(props) {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Filter courses..."
+              value={classes.filterText}
+              onChange={classes.onFilterTextChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
