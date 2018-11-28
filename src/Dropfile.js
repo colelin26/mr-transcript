@@ -1,21 +1,35 @@
 import React from 'react';
 import Dropzone from 'react-dropzone'
 
+const MESSAGES = {
+        welcome_message: 'Drop your PDF here or Click to upload',
+        uploaded_message: (file) => `${file.name} - ${file.size}`,
+        successful_message: 'Upload Succeeded',
+}
+
 class Dragbox extends React.Component {
-    constructor() {
-      super()
-      this.state = { files: [] }
+    constructor(props) {
+      super(props)
+      this.state = { 
+        files: [] , 
+        message: MESSAGES.welcome_message,
+        fileDropped: false,
+      };
     }
   
     onDrop(files) {
+      this.props.togglePDFDropped();
       this.setState({
-        files
+        files,
+        message: `${MESSAGES.uploaded_message(files[0])}\n${MESSAGES.successful_message}`,
       });
     }
   
     onCancel() {
+      this.props.togglePDFDropped();
       this.setState({
-        files: []
+        files: [],
+        message: MESSAGES.welcome_message,
       });
     }
   
@@ -26,21 +40,12 @@ class Dragbox extends React.Component {
             <Dropzone
               onDrop={this.onDrop.bind(this)}
               onFileDialogCancel={this.onCancel.bind(this)}
-              accept={{
-                    type: 'pdf',
-              }}
+              accept="application/pdf"
+              multiple={false}
             >
-              <p>Please upload your transcript PDF</p>
+              <p>{this.state.message}</p>
             </Dropzone>
           </div>
-          <aside>
-            <h2>Dropped files</h2>
-            <ul>
-              {
-                this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-              }
-            </ul>
-          </aside>
         </section>
       );
     }

@@ -9,9 +9,14 @@ class App extends Component {
       courses: [],
       filters: [],
       filterText:'',
-      pdfUploaded: false,
     };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+  }
+
+  togglePDFDropped() {
+    this.setState({
+      pdfDropped: !this.state.pdfDropped,
+    });
   }
 
   handleFilterTextChange(filterText) {
@@ -27,7 +32,7 @@ class App extends Component {
                 filterText={this.state.filterText} 
                 onFilterTextChange={this.handleFilterTextChange}
         /> */}
-        <AppHeader />
+        <AppHeader togglePDFDropped/>
         
       </div>
     );
