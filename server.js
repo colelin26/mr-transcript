@@ -4,8 +4,9 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const port = process.env.PORT|| 8080;
+const scraper = require('./server/scripts/transcriptScraper');
 
-app.use(fileUpload);
+app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'build')));
@@ -21,23 +22,18 @@ app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
 
-app.get('/get', (req, res) => {
-  console.log(req);
-  res.json({msg:'hello'});
-  }
-);
 
 
-app.post('/upload', (req, res) => {
-    console.log(req);
-    let pdfFile = req.files.file;
-  
-    pdfFile.mv(`${__dirname}/upload/${req.body.filename}.jpg`, function(err) {
+app.post('/upload', async (req, res) => {
+    console.log(req.files);
+    let pdfFile = req.files.transcript;
+    const pdfPath = `${__dirname}/upload/${pdfFile.name}.pdf`;
+    await pdfFile.mv(pdfPath, async function(err) {
       if (err) {
         return res.status(500).send(err);
       }
-  
-      res.json({file: `public/${req.body.filename}.jpg`});
+    let pdfJSON = await scraper.scrape_transcript(pdfPath);
+    res.json(pdfJSON);
     });
   
   })

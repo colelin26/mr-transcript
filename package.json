@@ -8,6 +8,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
+    "pdf-text-extract": "^1.5.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",

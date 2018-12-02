@@ -25,7 +25,7 @@ class Header extends Component {
       file:[],
     };
     this.togglePDFDropped = this.togglePDFDropped.bind(this);
-    this.uploadFiles = this.uploadFiles.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
   }
 
     togglePDFDropped(files) {
@@ -35,17 +35,11 @@ class Header extends Component {
       });
     }
 
-    uploadFiles() {
+    uploadFile() {
       console.log('buttonclicked');
       const req = request.post('/upload');
-      this.state.files.forEach(file => {
-        console.log(file);
-        req.attach(file.name, file);
-      });
-      debugger
+      req.attach('transcript', this.state.files[0]);
       req.end((err, res) => {
-        debugger
-        console.log(err.message);
         if (err) throw new Error('upload failed');
         console.log(res);
       });
@@ -64,7 +58,7 @@ class Header extends Component {
           </p>
           {
             this.state.pdfDropped &&
-            <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.uploadFiles}>
+            <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.uploadFile}>
               I'm Ready
             </Button>
           }
