@@ -5,11 +5,14 @@
   "dependencies": {
     "@material-ui/core": "^3.6.0",
     "@material-ui/icons": "^3.0.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-dropzone": "^7.0.1",
     "react-scripts": "2.1.1",
+    "superagent": "^4.0.0",
     "typeface-roboto": "0.0.54"
   },
   "scripts": {
@@ -27,5 +30,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3000"
+  "proxy": "http://localhost:8080"
 }

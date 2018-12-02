@@ -1,10 +1,10 @@
 import React from 'react';
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+
 
 const MESSAGES = {
         welcome_message: 'Drop your PDF here or Click to upload',
-        uploaded_message: (file) => `${file.name} - ${file.size}`,
-        successful_message: 'Upload Succeeded',
+        uploaded_message: (file) => `${file.name} \n ${file.size} Bytes`,
 }
 
 class Dragbox extends React.Component {
@@ -18,15 +18,15 @@ class Dragbox extends React.Component {
     }
   
     onDrop(files) {
-      this.props.togglePDFDropped();
+      this.props.togglePDFDropped(files);
       this.setState({
         files,
-        message: `${MESSAGES.uploaded_message(files[0])}\n${MESSAGES.successful_message}`,
+        message: `${MESSAGES.uploaded_message(files[0])}`,
       });
     }
   
     onCancel() {
-      this.props.togglePDFDropped();
+      this.props.togglePDFDropped([]);
       this.setState({
         files: [],
         message: MESSAGES.welcome_message,

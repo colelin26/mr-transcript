@@ -3,6 +3,7 @@ import Dragbox from './Dropfile';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import request from 'superagent';
 import('./AppHeader.css');
 
 const styles = theme => ({
@@ -21,33 +22,54 @@ class Header extends Component {
     this.state = {
       pdfDropped: false,
       pdfUploaded: false,
+      file:[],
     };
     this.togglePDFDropped = this.togglePDFDropped.bind(this);
+    this.uploadFiles = this.uploadFiles.bind(this);
   }
 
-    togglePDFDropped() {
+    togglePDFDropped(files) {
       this.setState({
         pdfDropped: !this.state.pdfDropped,
+        files: files,
+      });
+    }
+
+    uploadFiles() {
+      console.log('buttonclicked');
+      const req = request.post('/upload');
+      this.state.files.forEach(file => {
+        console.log(file);
+        req.attach(file.name, file);
+      });
+      debugger
+      req.end((err, res) => {
+        debugger
+        console.log(err.message);
+        if (err) throw new Error('upload failed');
+        console.log(res);
       });
     }
 
     render () {
         return (
-        <header className="App-header">
-        <h1>
-            WAT-transcript
-        </h1>
-        <Dragbox togglePDFDropped={this.togglePDFDropped}/>
-        <p>
-          Upload your UW transcript to see the magic
-        </p>
-        {
-          this.state.pdfDropped &&
-          <Button variant="contained" color="secondary" className={this.props.classes.button}>
-            I'm Ready
-          </Button>
-        }
-      </header>);
+        <div className="bg container">
+          <header className="App-header">
+          <h1>
+              WAT-transcript
+          </h1>
+          <Dragbox togglePDFDropped={this.togglePDFDropped}/>
+          <p>
+            Upload your UW transcript to see the magic
+          </p>
+          {
+            this.state.pdfDropped &&
+            <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.uploadFiles}>
+              I'm Ready
+            </Button>
+          }
+        </header>
+      </div>);
     }
   }
 

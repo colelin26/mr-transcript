@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppHeader from './AppHeader';
-import NavBar from './NavBar';
+// import NavBar from './NavBar';
 
 class App extends Component {
   constructor(props) {
