@@ -21,7 +21,6 @@ async function scrape_transcript(filePath) {
     let transcriptJSON = {};
     transcriptJSON.courses = courses;
     transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
-    console.log(transcriptJSON);
     return transcriptJSON;
 }
 

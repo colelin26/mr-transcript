@@ -14,18 +14,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.get('/*', function (req, res) {
-    console.log(path.join(__dirname, 'build', 'index.html'));
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
-});
-
-
-
 app.post('/upload', async (req, res) => {
-    console.log(req.files);
     let pdfFile = req.files.transcript;
     const pdfPath = `${__dirname}/upload/${pdfFile.name}.pdf`;
     await pdfFile.mv(pdfPath, async function(err) {
@@ -33,6 +25,7 @@ app.post('/upload', async (req, res) => {
         return res.status(500).send(err);
       }
     let pdfJSON = await scraper.scrape_transcript(pdfPath);
+    console.log(pdfJSON);
     res.json(pdfJSON);
     });
   

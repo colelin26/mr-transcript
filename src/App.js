@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import AppHeader from './AppHeader';
-// import NavBar from './NavBar';
+import NavBar from './NavBar';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      transcript: {},
       courses: [],
       filters: [],
+      pdfUploaded: false,
       filterText:'',
     };
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.confirmPDFSubmitted = this.confirmPDFSubmitted.bind(this);
   }
 
-  togglePDFDropped() {
+  confirmPDFSubmitted(json) {
     this.setState({
-      pdfDropped: !this.state.pdfDropped,
+      transcript: json,
+      pdfUploaded: true,
     });
   }
 
@@ -28,12 +32,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <NavBar title="WAT-Transcript" 
+        { this.state.pdfUploaded &&
+          <NavBar title="WAT-Transcript" 
                 filterText={this.state.filterText} 
                 onFilterTextChange={this.handleFilterTextChange}
-        /> */}
-        <AppHeader togglePDFDropped/>
-        
+          />
+        }
+        { !this.state.pdfUploaded &&
+          <AppHeader confirmPDFSubmitted={this.confirmPDFSubmitted}/>
+        }
       </div>
     );
   }

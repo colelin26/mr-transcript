@@ -21,7 +21,6 @@ class Header extends Component {
     super(props);
     this.state = {
       pdfDropped: false,
-      pdfUploaded: false,
       file:[],
     };
     this.togglePDFDropped = this.togglePDFDropped.bind(this);
@@ -41,7 +40,7 @@ class Header extends Component {
       req.attach('transcript', this.state.files[0]);
       req.end((err, res) => {
         if (err) throw new Error('upload failed');
-        console.log(res);
+        this.props.confirmPDFSubmitted(res);
       });
     }
 

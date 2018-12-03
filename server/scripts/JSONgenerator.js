@@ -12,7 +12,7 @@ const REGEXES = {
     // courses_unfinish_global fetches all courses that haven't finished in a block
     courses_unfinish_global: /(((\w+)\s+(\d+\w?)\s+((((\w|-)+ +)+)(\w|-)+))\n)/g,
     // courses_block_global fetch courses_block
-    courses_block_global: /((((\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+)(\d.\d\d)\s+(\d.\d\d)\s+(\d+|\w+))\n)+)|((((\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+))\n)+)\s+Milestones/g,
+    courses_block_global: /((((\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+)(\d.\d\d)\s+(\d.\d\d)\s+(\d+|\w+))\n)+)|\w+\n{2}Course\s+Description\s+Attempted\s+Earned\s+Grade\s+((((\w+)\s+(\d+\w?)\s+((((\w|-)+ +)+)(\w|-)+))\n)+)/g,
 };
 
 const SELECTORS = {
@@ -53,7 +53,6 @@ class Block {
             resultObj[variable] = dataGroup[lookUpTable[variable]].trim();
             if (filterArr != undefined) {
                 if (filterArr.includes(lookUpTable[variable])) {
-                    console.log(resultObj);
                     if (!isNaN(+resultObj[variable])) resultObj[variable] = +resultObj[variable];
                 }
             }
@@ -127,6 +126,7 @@ exports.txt_to_JSON = async function txt_to_JSON(txt) {
         let result_courses_block_global = txt.match(REGEXES.courses_block_global);
         let result_terms = new termBlock(txt.match(REGEXES.terms));
         let courses_arr = combineBlocks(result_courses_block_global, result_terms);
+        courses_arr.forEach((c,index) => c.id=index+1);
         return courses_arr;
     } catch(err) {
         throw new Error(err);
