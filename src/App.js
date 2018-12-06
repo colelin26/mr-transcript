@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AppHeader from './AppHeader';
 import NavBar from './NavBar';
+import CoursesTable from './CoursesTable';
+import StatusCard from './StatusCard';
 
 class App extends Component {
   constructor(props) {
@@ -17,9 +19,14 @@ class App extends Component {
   }
 
   confirmPDFSubmitted(json) {
+    console.log(json);
     this.setState({
       transcript: json,
       pdfUploaded: true,
+      courses: json.courses,
+      info: {
+        fpo_avg: json.fpo_avg,
+      }
     });
   }
 
@@ -36,6 +43,16 @@ class App extends Component {
           <NavBar title="WAT-Transcript" 
                 filterText={this.state.filterText} 
                 onFilterTextChange={this.handleFilterTextChange}
+          />
+        }
+        {
+          (this.state.courses.length > 0) &&
+          <StatusCard info={this.state.info}
+          />
+        }
+        {
+          (this.state.courses.length > 0) &&
+          <CoursesTable rows={this.state.courses}
           />
         }
         { !this.state.pdfUploaded &&

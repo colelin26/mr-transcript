@@ -17,7 +17,6 @@ const styles = theme => ({
 
 class Header extends Component {
   constructor(props) {
-    console.log(props.classes);
     super(props);
     this.state = {
       pdfDropped: false,
@@ -35,12 +34,11 @@ class Header extends Component {
     }
 
     uploadFile() {
-      console.log('buttonclicked');
       const req = request.post('/upload');
       req.attach('transcript', this.state.files[0]);
       req.end((err, res) => {
         if (err) throw new Error('upload failed');
-        this.props.confirmPDFSubmitted(res);
+        this.props.confirmPDFSubmitted(res.body);
       });
     }
 
