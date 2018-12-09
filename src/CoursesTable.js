@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 function SimpleTable(props) {
-    console.log(props.rows);
+  console.log(props.rows);
   const { classes, rows} = props;
 
   return (

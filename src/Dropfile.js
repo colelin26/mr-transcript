@@ -18,7 +18,7 @@ class Dragbox extends React.Component {
     }
   
     onDrop(files) {
-      this.props.togglePDFDropped(files);
+      if (files.length > 0) this.props.togglePDFDropped(files);
       this.setState({
         files,
         message: `${MESSAGES.uploaded_message(files[0])}`,

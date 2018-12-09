@@ -1,4 +1,8 @@
 const REGEXES = {
+        //initial filter
+        term_inf: /(?:Fall|Winter|Spring)\s\d{4}/gi,
+        filter_out: /University of Waterloo[\s\S]*Ontario\sEducation\sNbr:\s\d+/gi,
+        content: /Beginning of Undergraduate Record((.|\s)*)End of Undergraduate Unofficial Transcript/gi,
     // term fetches groups in a course
     term: /Level:\s+([0-9][A-Z])\s+Load:\s((\w|-)+)\s+Form Of Study: ([\w]{9}|[\w|-]{5}\s[\w]{8})/,
     // term_global fetches all courses in global
@@ -118,6 +122,7 @@ function combineBlocks(coursesBlock, ...otherBlocks) {
         }
        
     }
+    console.log(coursesArr);
     return coursesArr;
 }
 

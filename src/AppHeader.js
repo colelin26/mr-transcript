@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import request from 'superagent';
-import('./AppHeader.css');
+require('./AppHeader.css');
 
 const styles = theme => ({
   button: {
@@ -12,6 +12,25 @@ const styles = theme => ({
   },
   input: {
     display: 'none',
+  },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '600px',
+    margin: 'auto',
+    fontSize: 'calc(10px + 2vmin)',
+    backgroundColor: 'aliceblue',
+    opacity: '0.7',
+    fontFamily: "'Open Sans', sans-serif",
+  },
+  container: {
+    minHeight: '100vh',
+    display: 'flex',
+    height: '100%',
   },
 });
 
@@ -44,8 +63,8 @@ class Header extends Component {
 
     render () {
         return (
-        <div className="bg container">
-          <header className="App-header">
+        <div className={`${this.props.container} bg`}>
+          <header className={this.props.classes.header}>
           <h1>
               WAT-transcript
           </h1>

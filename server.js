@@ -19,7 +19,7 @@ app.get('/*', function (req, res) {
 
 app.post('/upload', async (req, res) => {
     let pdfFile = req.files.transcript;
-    const pdfPath = `${__dirname}/upload/${pdfFile.name}.pdf`;
+    const pdfPath = `${__dirname}/upload/${pdfFile.name}`;
     await pdfFile.mv(pdfPath, async function(err) {
       if (err) {
         return res.status(500).send(err);
@@ -28,7 +28,6 @@ app.post('/upload', async (req, res) => {
     console.log(pdfJSON);
     res.json(pdfJSON);
     });
-  
-  })
+  });
 
 app.listen(port, () => console.log(`wat_transcript started on ${port}!`))

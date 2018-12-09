@@ -14,14 +14,18 @@ async function readPDF(filePath) {
 }
 
 async function scrape_transcript(filePath) {
-    const txt = await readPDF(filePath);
-    const courses = await jsonGene.txt_to_JSON(txt);
-    gpacal.courses_add_fpo(courses);
+    try {
+        const txt = await readPDF(filePath);
+        const courses = await jsonGene.txt_to_JSON(txt);
+        gpacal.courses_add_fpo(courses);
 
-    let transcriptJSON = {};
-    transcriptJSON.courses = courses;
-    transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
-    return transcriptJSON;
+        let transcriptJSON = {};
+        transcriptJSON.courses = courses;
+        transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
+        return transcriptJSON;
+    } catch (err) {
+        throw new Error(err);
+    }
 }
 
 
