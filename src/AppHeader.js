@@ -45,9 +45,9 @@ class Header extends Component {
     this.uploadFile = this.uploadFile.bind(this);
   }
 
-    togglePDFDropped(files) {
+    togglePDFDropped(files, bool) {
       this.setState({
-        pdfDropped: !this.state.pdfDropped,
+        pdfDropped: bool,
         files: files,
       });
     }

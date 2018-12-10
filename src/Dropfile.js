@@ -18,7 +18,7 @@ class Dragbox extends React.Component {
     }
   
     onDrop(files) {
-      if (files.length > 0) this.props.togglePDFDropped(files);
+      if (files.length > 0) this.props.togglePDFDropped(files, true);
       this.setState({
         files,
         message: `${MESSAGES.uploaded_message(files[0])}`,
@@ -26,7 +26,7 @@ class Dragbox extends React.Component {
     }
   
     onCancel() {
-      this.props.togglePDFDropped([]);
+      this.props.togglePDFDropped([], false);
       this.setState({
         files: [],
         message: MESSAGES.welcome_message,
