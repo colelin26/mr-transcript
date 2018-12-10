@@ -39,7 +39,7 @@ function SimpleTable(props) {
             <TableCell>Form of Study</TableCell>
             <TableCell numeric>Attempted Credit</TableCell>
             <TableCell numeric>Earned Credit</TableCell>
-
+            <TableCell>Tag</TableCell>
 
           </TableRow>
         </TableHead>
@@ -60,6 +60,7 @@ function SimpleTable(props) {
                 <TableCell>{row.form_of_study}</TableCell>
                 <TableCell numeric>{row.attempted_credit}</TableCell>
                 <TableCell numeric>{row.earned_credit}</TableCell>
+                <TableCell>On Hold</TableCell>
               </TableRow>
             );
           })}

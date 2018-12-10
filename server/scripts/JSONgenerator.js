@@ -1,140 +1,112 @@
 const REGEXES = {
-        //initial filter
-        term_inf: /(?:Fall|Winter|Spring)\s\d{4}/gi,
-        filter_out: /University of Waterloo[\s\S]*Ontario\sEducation\sNbr:\s\d+/gi,
-        content: /Beginning of Undergraduate Record((.|\s)*)End of Undergraduate Unofficial Transcript/gi,
-    // term fetches groups in a course
-    term: /Level:\s+([0-9][A-Z])\s+Load:\s((\w|-)+)\s+Form Of Study: ([\w]{9}|[\w|-]{5}\s[\w]{8})/,
-    // term_global fetches all courses in global
-    terms: /Level:\s+([0-9][A-Z])\s+Load:\s((\w|-)+)\s+Form Of Study: ([\w]{9}|[\w|-]{5}\s[\w]{8})/g,
-    // course fetch groups in a course
-    course_finished: /(\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+)(\d.\d\d)\s+(\d.\d\d)\s+(\d+|\w+)\n/,
-    // course
-    course_unfinished: /((\w+)\s+(\d+\w?)\s+((((\w|-)+ +)+)(\w|-)+))\n/,
-    // finished_courses_global fetch all courses in a block
-    courses_finished_global: /(((\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+)(\d.\d\d)\s+(\d.\d\d)\s+(\d+|\w+))\n)/g,
-    // courses_unfinish_global fetches all courses that haven't finished in a block
-    courses_unfinish_global: /(((\w+)\s+(\d+\w?)\s+((((\w|-)+ +)+)(\w|-)+))\n)/g,
-    // courses_block_global fetch courses_block
-    courses_block_global: /((((\w+)\s+(\d+\w?)\s+(((\w|-)+\s+)+)(\d.\d\d)\s+(\d.\d\d)\s+(\d+|\w+))\n)+)|\w+\n{2}Course\s+Description\s+Attempted\s+Earned\s+Grade\s+((((\w+)\s+(\d+\w?)\s+((((\w|-)+ +)+)(\w|-)+))\n)+)/g,
+    //initial filter
+    init: {
+        content: /Beginning of Undergraduate Record\s*(\w[\S\s]+\w)\s*End of Undergraduate Unofficial Transcript/i,
+        termDate: /((?:Fall|Winter|Spring)\s(?:\d{4}))/gi,
+        filterOut: /University of Waterloo[\s\S]*Ontario\sEducation\sNbr:\s\d+|Milestones[\S\s]*/gi,
+    },
+
+    Milestones: /(Milestones[\S\s]*)Scholarships and Awards/i,
+    ScholarshipsAwards: /Scholarships and Awards[\S\s]*/i,
+    term: {
+        // the date of the courses in a term
+        termDate: /(Fall|Winter|Spring)\s(\d{4})/i,
+        // the heading information of a term
+        termHeader: /Level: +([0-9][A-Z]) +Load: ((?:\w|-)+) +Form Of Study: ([\w]{9}|[\w|-]{5} [\w]{8})/i,
+        // course that has a grade
+        courseFinished: /(\w+) +(\d+\w?)\s+([\w &-]+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(\w[\w &-]+)\n)?/,
+        // course that does not have a grade yet
+        courseUnfinished: /(\w+) +(\d+\w?) +([\w &-]+)\n( +(\w[\w &-]+)\n)?/,
+        gpaAndStanding: /In GPA[\s\S]*Effective \d{2}\/\d{2}\/\d{4}/gi,
+    },
 };
 
+
 const SELECTORS = {
-    termInfoSelector: {
+    termDate: {
+        term: 1,
+        year: 2,
+    },
+    termHeader: {
         level: 1,
         course_load: 2,
-        form_of_study: 4,
+        form_of_study: 3,
     },
-    courseFinishedInfoSelector: {
+    courseFinished: {
         course_letter: 1,
         course_number: 2,
         course_name: 3,
-        attempted_credit: 6,
-        earned_credit: 7,
-        percentage_grade: 8,
+        attempted_credit: 4,
+        earned_credit: 5,
+        percentage_grade: 6,
+        extra_info:7,
     },
-    courseUnfinishedInfoSelector: {
-        course_letter: 2,
-        course_number: 3,
-        course_name: 4,
+    courseUnfinished: {
+        course_letter: 1,
+        course_number: 2,
+        course_name: 3,
+        extra_info: 4,
     }
-}
+};
 
 const TONUMBER = {
-    courseFinished: [6, 7, 8],
-    courseUnfinished: [3],
-}
+    courseFinished: [4,5,6],
+};
 
-class Block {
-    constructor(arr){
-        this.arr = arr;
-    };
-    // Given data and lookUpTable, produce an object where keys are the same 
-    // as the one in the lookUpTable but the values are the corresdence from the data
-    lookUpAndMerge(lookUpTable, filterArr, dataGroup) {
-        let resultObj = {};
-        for (let variable in lookUpTable) {
-            resultObj[variable] = dataGroup[lookUpTable[variable]].trim();
-            if (filterArr != undefined) {
-                if (filterArr.includes(lookUpTable[variable])) {
-                    if (!isNaN(+resultObj[variable])) resultObj[variable] = +resultObj[variable];
-                }
-            }
+function scrapeWithSelector(str, regex, selector, toNumber) {
+    const obj = {};
+    const matched_results = str.match(regex);
+    for (const sel in selector) {
+        if (sel !== 'extra_info') obj[sel] = matched_results[selector[sel]].trim();
+        if (toNumber !== undefined && toNumber.length > 0 && toNumber.includes(selector[sel])) {
+            obj[sel] = +obj[sel];
         }
-        return resultObj;
-    };
-    InfoGenerator(Str) {
-        const Groups = Str.match(this.REGEX);
-        return this.lookUpAndMerge(this.InfoSelector, this.toNumber, Groups);
-    };
-
-}
-
-class termBlock extends Block{
-    constructor(arr){
-        super(arr);
-        this.REGEX = REGEXES.term;
-        this.InfoSelector = SELECTORS.termInfoSelector;
     }
-}
-
-class courseFinishedBlock extends Block{
-    constructor(arr){
-        super(arr);
-        this.REGEX = REGEXES.course_finished;
-        this.InfoSelector = SELECTORS.courseFinishedInfoSelector;
-        this.toNumber = TONUMBER.courseFinished;
+    if (matched_results[selector["extra_info"]] !== undefined) {
+        obj['course_name'] = `${matched_results[selector['course_name']].trim()} ${matched_results[selector['extra_info']].trim()}`;
     }
+    return obj;
 }
 
-class courseUnfinishedBlock extends Block{
-    constructor(arr){
-        super(arr);
-        this.REGEX = REGEXES.course_unfinished;
-        this.InfoSelector = SELECTORS.courseUnfinishedInfoSelector;
-        this.toNumber = TONUMBER.courseUnfinished;
-    }
+function scrapeCoursesFromTerm(str, regex, selector, toNumber) {
+    str = str.replace(REGEXES.term.gpaAndStanding, '');
+    const regexG = new RegExp(regex, 'gi');
+    const coursesStr = str.match(regexG);
+    if (coursesStr === null) return [];
+    const courses = coursesStr.map((str) => scrapeWithSelector(str, regex, selector, toNumber));
+    return courses;
+} 
+
+function scrapeTerm(str, ...other) {
+    const header = scrapeWithSelector(str, REGEXES.term.termHeader, SELECTORS.termHeader);
+    const coursesFinished = scrapeCoursesFromTerm(str, REGEXES.term.courseFinished, SELECTORS.courseFinished, TONUMBER.courseFinished);
+    const coursesUnfinished = scrapeCoursesFromTerm(str, REGEXES.term.courseUnfinished, SELECTORS.courseUnfinished);
+    const coursesArr = coursesFinished.concat(coursesUnfinished);
+    const coursesArrFinal = coursesArr.map((course) => Object.assign(course, header, ...other));
+    return coursesArrFinal;
 }
 
-function combineBlocks(coursesBlock, ...otherBlocks) {
-    let coursesArr = [];
-    for (let i = 0; i < coursesBlock.length; i++) {
-        const coursesFinished = new courseFinishedBlock(coursesBlock[i].match(REGEXES.courses_finished_global));
-        const coursesUnfinished = new courseUnfinishedBlock(coursesBlock[i].match(REGEXES.courses_unfinish_global));
-        if (coursesFinished.arr != null) {
-            for (let j = 0; j < coursesFinished.arr.length; j++) {
-                let eachCourse = coursesFinished.InfoGenerator(coursesFinished.arr[j]);
-                for (let m = 0; m < otherBlocks.length; m++) {
-                   
-                    eachCourse = Object.assign(otherBlocks[m].InfoGenerator(otherBlocks[m].arr[i]),eachCourse);
-                }
-                coursesArr.push(eachCourse);
-            }
-        }
-        if (coursesUnfinished.arr != null) {
-            for (let j = 0; j < coursesUnfinished.arr.length; j++) {
-                let eachCourse = coursesUnfinished.InfoGenerator(coursesUnfinished.arr[j]);
-                for (let m = 0; m < otherBlocks.length; m++) {
-                    eachCourse = Object.assign(otherBlocks[m].InfoGenerator(otherBlocks[m].arr[i]),eachCourse);
-                }
-                coursesArr.push(eachCourse);
-            }
-        }
-       
-    }
-    console.log(coursesArr);
-    return coursesArr;
-}
-
-exports.txt_to_JSON = async function txt_to_JSON(txt) {
+exports.txt_to_JSON = function txt_to_JSON(txt) {
     try {
-        let result_courses_block_global = txt.match(REGEXES.courses_block_global);
-        let result_terms = new termBlock(txt.match(REGEXES.terms));
-        let courses_arr = combineBlocks(result_courses_block_global, result_terms);
-        courses_arr.forEach((c,index) => c.id=index+1);
-        return courses_arr;
-    } catch(err) {
-        throw new Error(err);
+        const content = txt.match(REGEXES.init.content)[1];
+        const milestones = content.match(REGEXES.Milestones)[1];
+        const scholarshipsAwards = content.match(REGEXES.ScholarshipsAwards)[0];
+        const termStrs = (content.replace(REGEXES.init.filterOut, '').split(REGEXES.init.termDate));
+        if (termStrs[0] === "") termStrs.shift();
+        else throw new Error('Expected the first element is an empty string');
+        if (termStrs.length % 2 !== 0) throw new Error('Expected terms to have even length');
+        let courses = [];
+        for (let i = 0; i < termStrs.length; i=i+2) {
+            const date = scrapeWithSelector(termStrs[i], REGEXES.term.termDate, SELECTORS.termDate);
+            courses = courses.concat(scrapeTerm(termStrs[i+1],date)); 
+        }
+        courses.forEach((elem, index) => {
+            elem.id=index+1;
+            elem.tag={};
+        });
+        return courses;
+    } catch (err) {
+        throw new Error(`Encountered error in scraping the transcript with REGEXES\nMsg:${err.stack}`);
     }
 }
 

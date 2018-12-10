@@ -1,3 +1,7 @@
+const customizedFilter = {
+    notInAvg: /WKRPT|PD/i,
+}
+
 // return the fpo correspondence of a course
 exports.course_fpo = function course_fpo(course) {
     let percentage_grade = course.percentage_grade;
@@ -16,32 +20,42 @@ exports.course_fpo = function course_fpo(course) {
     else return 0.00;
 }
 
-function course_filter(lowerbound, upperbound, force, course) {
+function course_filter(lowerbound, upperbound, force, course, courseLetterRegex) {
     if (course.percentage_grade === undefined) return false;
     if (force) return true;
     if (isNaN(course.percentage_grade)) return false;
     if (course.percentage_grade < lowerbound) return false;
     if (course.percentage_grade > upperbound) return false;
+    if (courseLetterRegex!==undefined && courseLetterRegex.test(course.course_letter)) return false;
     return true;
 }
 
 // add fpo for courses without fpo 
 exports.courses_add_fpo = function courses_add_fpo(courses) {
-    for (let i = 0; i < courses.length; i++) {
-        if (course_filter(0 , 100, false, courses[i])) courses[i].fpo_scale = exports.course_fpo(courses[i]);
-    }
+    courses.forEach((course) => {
+        if (course_filter(0, 100, false, course)) {
+            course.tag['fgo'] = true;
+        } else course.tag['fgo'] = false;
+    })
+    courses.forEach(course => {
+        if (course.tag['fgo']) course.fpo_scale = exports.course_fpo(course);
+    })
 }
 
 // calculate avg_fpo for given courses
 exports.courses_avg_fpo = function courses_avg_fpo(courses) {
-    courses = courses.filter((course) => course_filter(0, 100, false, course));
-    let sum = 0;
-    for (let i = 0; i < courses.length; i++) {
-        if (courses[i].percentage_grade != undefined) {
-            sum += courses[i].fpo_scale;
+    courses.forEach((course) => {
+        if (course_filter(0, 100, false, course, customizedFilter.notInAvg)) course.tag['inavg'] = true;
+        else course.tag['inavg'] = false;
+    });
+    let [sum, count] = [0,0];
+    courses.forEach((course) => {
+        if (course.tag['inavg']) {
+            sum += course.fpo_scale;
+            count++;
         }
-    }
-    const average = (sum / courses.length).toFixed(2);
+    });
+    const average = (sum / count).toFixed(2);
     return average;
 }
 
