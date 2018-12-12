@@ -16,9 +16,8 @@ async function scrape_transcript(filePath) {
     try {
         const txt = await readPDF(filePath);
         const courses = jsonGene.txt_to_JSON(txt);
-        console.log(courses);
         gpacal.courses_add_fpo(courses);
-        let transcriptJSON = {};
+        const transcriptJSON = {};
         transcriptJSON.courses = courses;
         transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
         return transcriptJSON;

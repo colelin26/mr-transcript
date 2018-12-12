@@ -19,7 +19,6 @@ class App extends Component {
   }
 
   confirmPDFSubmitted(json) {
-    console.log(json);
     this.setState({
       transcript: json,
       pdfUploaded: true,
