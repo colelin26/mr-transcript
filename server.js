@@ -4,18 +4,12 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const port = process.env.PORT|| 8080;
-const scraper = require('./server/scripts/transcriptScraper');
+const scraper = require('./server/scrape/transcriptScraper');
 
 app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'build')));
-
-
-
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 app.post('/upload', async (req, res) => {
     let pdfFile = req.files.transcript;
@@ -30,4 +24,13 @@ app.post('/upload', async (req, res) => {
     });
   });
 
-app.listen(port, () => console.log(`wat_transcript started on ${port}!`))
+  if (process.env.NODE_ENV === 'production') {
+    // Serve any static files
+    app.use(express.static(path.join(__dirname, 'client/build')));
+    // Handle React routing, return all requests to React app
+    app.get('*', function(req, res) {
+      res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    });
+  }
+
+app.listen(port, () => console.log(`WATranscript started on ${port}!`))

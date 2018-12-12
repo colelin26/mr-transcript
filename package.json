@@ -1,35 +1,32 @@
 {
   "name": "wa-transcript",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Web application for UW students to visualize and make full usage of transcript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colelin26/wat-transcript.git"
+  },
   "dependencies": {
-    "@material-ui/core": "^3.6.0",
-    "@material-ui/icons": "^3.0.1",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
-    "pdf-text-extract": "^1.5.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-dropzone": "^7.0.1",
-    "react-scripts": "2.1.1",
-    "superagent": "^4.0.0",
-    "typeface-roboto": "0.0.54"
+    "pdf-text-extract": "^1.5.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "concurrently": "^4.0.1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "colelin26@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/colelin26/wat-transcript/issues"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "proxy": "http://localhost:8080"
+  "homepage": "https://github.com/colelin26/wat-transcript#readme"
 }
