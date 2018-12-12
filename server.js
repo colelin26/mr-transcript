@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const scraper = require('./server/scrape/transcriptScraper');
+const utils = require('./server/utils/utils');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -14,12 +15,13 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.post('/upload', async (req, res) => {
   const pdfFile = req.files.transcript;
-  const pdfPath = `${__dirname}/upload/${pdfFile.name}`;
+  const fileName = utils.generateFilename(pdfFile.name);
+  const pdfPath = `${__dirname}/upload/${fileName}`;
   await pdfFile.mv(pdfPath, async err => {
     if (err) {
       return res.status(500).send(err);
     }
-    const pdfJSON = await scraper.scrape_transcript(pdfPath);
+    const pdfJSON = await scraper.scrapePDF(pdfPath);
     return res.json(pdfJSON);
   });
 });

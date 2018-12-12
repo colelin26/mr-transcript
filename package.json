@@ -18,11 +18,11 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
+    "moment": "^2.22.2",
     "pdf-text-extract": "^1.5.0"
   },
   "devDependencies": {
     "concurrently": "^4.0.1",
-    "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
@@ -36,5 +36,7 @@
   "bugs": {
     "url": "https://github.com/colelin26/wat-transcript/issues"
   },
-  "homepage": "https://github.com/colelin26/wat-transcript#readme"
+  "homepage": "https://github.com/colelin26/wat-transcript#readme",
+  "start": "node server.js",
+  "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
 }
