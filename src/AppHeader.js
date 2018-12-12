@@ -66,7 +66,7 @@ class Header extends Component {
         <div className={`${this.props.container} bg`}>
           <header className={this.props.classes.header}>
           <h1>
-              WAT-transcript
+              WATranscript
           </h1>
           <Dragbox togglePDFDropped={this.togglePDFDropped}/>
           <p>

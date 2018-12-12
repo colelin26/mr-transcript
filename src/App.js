@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         { this.state.pdfUploaded &&
-          <NavBar title="WAT-Transcript" 
+          <NavBar title="WATranscript" 
                 filterText={this.state.filterText} 
                 onFilterTextChange={this.handleFilterTextChange}
           />

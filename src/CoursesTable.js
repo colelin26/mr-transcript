@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TagButton from './TagButton';
 import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
@@ -47,10 +48,10 @@ function SimpleTable(props) {
           {rows.map(row => {
             return (
               <TableRow key={row.id}>
-                <TableCell numeric>{row.id}</TableCell>
+                <TableCell numeric component="th" scope="row">{row.id}</TableCell>
                 <TableCell>{row.course_letter}</TableCell>
                 <TableCell>{row.course_number}</TableCell>
-                <TableCell component="th" scope="row">
+                <TableCell>
                   {row.course_name}
                 </TableCell>
                 <TableCell numeric>{row.fpo_scale}</TableCell>
@@ -60,7 +61,7 @@ function SimpleTable(props) {
                 <TableCell>{row.form_of_study}</TableCell>
                 <TableCell numeric>{row.attempted_credit}</TableCell>
                 <TableCell numeric>{row.earned_credit}</TableCell>
-                <TableCell>On Hold</TableCell>
+                <TableCell><TagButton tags={row.tag}></TagButton></TableCell>
               </TableRow>
             );
           })}
