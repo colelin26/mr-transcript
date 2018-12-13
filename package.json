@@ -1,7 +1,7 @@
 {
   "name": "wa-transcript",
   "version": "1.0.0",
-  "description": "Web application for UW students to visualize and make full usage of transcript",
+  "description": "Web application for UW students to make full usage of transcript",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
