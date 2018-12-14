@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 app.post('/upload', async (req, res) => {
   const pdfFile = req.files.transcript;
-  const fileName = utils.generateFilename(pdfFile.name);
+  const fileName = utils.generateFilename(pdfFile.name, pdfFile.mimetype);
   const pdfPath = `${__dirname}/upload/${fileName}`;
   await pdfFile.mv(pdfPath, async err => {
     if (err) {

@@ -1,6 +1,12 @@
 const moment = require('moment');
 
-module.exports.generateFilename = str => {
+const REGEXES = {
+  filetype: /\/(\w+)/i,
+}
+
+module.exports.generateFilename = (str, mimetype) => {
+  const filetype = mimetype.match(REGEXES.filetype)[1];
   const time = moment().toISOString();
-  return `${str} ${time}`;
+  const filename = str.replace(`.${filetype}`, '');
+  return `${filename} ${time}.${filetype}`;
 };

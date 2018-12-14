@@ -20,7 +20,7 @@ const styles = theme => ({
     textAlign: 'center',
     justifyContent: 'center',
     height: '100vh',
-    width: '600px',
+    width: '60%',
     margin: 'auto',
     fontSize: 'calc(10px + 2vmin)',
     backgroundColor: 'aliceblue',
@@ -31,6 +31,12 @@ const styles = theme => ({
     minHeight: '100vh',
     display: 'flex',
     height: '100%',
+    width: '100%',
+  },
+  '@media (min-width: 930px)': {
+    header: {
+      width: '34%',
+    },
   },
 });
 
@@ -39,36 +45,36 @@ class Header extends Component {
     super(props);
     this.state = {
       pdfDropped: false,
-      file:[],
+      file: [],
     };
     this.togglePDFDropped = this.togglePDFDropped.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
   }
 
-    togglePDFDropped(files, bool) {
-      this.setState({
-        pdfDropped: bool,
-        files: files,
-      });
-    }
+  togglePDFDropped(files, bool) {
+    this.setState({
+      pdfDropped: bool,
+      files: files,
+    });
+  }
 
-    uploadFile() {
-      const req = request.post('/upload');
-      req.attach('transcript', this.state.files[0]);
-      req.end((err, res) => {
-        if (err) throw new Error('upload failed');
-        this.props.confirmPDFSubmitted(res.body);
-      });
-    }
+  uploadFile() {
+    const req = request.post('/upload');
+    req.attach('transcript', this.state.files[0]);
+    req.end((err, res) => {
+      if (err) throw new Error('upload failed');
+      this.props.confirmPDFSubmitted(res.body);
+    });
+  }
 
-    render () {
-        return (
-        <div className={`${this.props.container} bg`}>
-          <header className={this.props.classes.header}>
+  render() {
+    return (
+      <div className={`${this.props.container} bg`}>
+        <header className={this.props.classes.header}>
           <h1>
-              WATranscript
+            WATranscript
           </h1>
-          <Dragbox togglePDFDropped={this.togglePDFDropped}/>
+          <Dragbox togglePDFDropped={this.togglePDFDropped} />
           <p>
             Upload your UW transcript to see the magic
           </p>
@@ -80,8 +86,8 @@ class Header extends Component {
           }
         </header>
       </div>);
-    }
   }
+}
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
