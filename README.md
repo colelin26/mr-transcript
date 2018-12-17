@@ -7,3 +7,4 @@ Web application for UW students to scrape transcript data, convert GPA, check gr
 # Usage
 
 1. `npm install && cd client && npm install` to install the environment
+2. `npm dev` to start the project
