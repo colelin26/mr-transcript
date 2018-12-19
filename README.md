@@ -14,5 +14,5 @@ React Web application for UW students to scrape transcript data, convert GPA, ch
 # To do lists (as in progress)
 
 1. web scripting for graduation requirement
-2. integrated graph analysis
-3. button for app demo
+2. graphical analysis integration
+3. demo purpose feature
