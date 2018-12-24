@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppHeader from './AppHeader';
 import NavBar from './NavBar';
 import CoursesTable from './CoursesTable';
+import EnhancedTable from './EnhancedTable';
 import StatusCard from './StatusCard';
 
 class App extends Component {
@@ -38,10 +39,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        { this.state.pdfUploaded &&
-          <NavBar title="WATranscript" 
-                filterText={this.state.filterText} 
-                onFilterTextChange={this.handleFilterTextChange}
+        {this.state.pdfUploaded &&
+          <NavBar title="WATranscript"
+            filterText={this.state.filterText}
+            onFilterTextChange={this.handleFilterTextChange}
           />
         }
         {
@@ -51,11 +52,11 @@ class App extends Component {
         }
         {
           (this.state.courses.length > 0) &&
-          <CoursesTable rows={this.state.courses}
+          <EnhancedTable rows={this.state.courses}
           />
         }
-        { !this.state.pdfUploaded &&
-          <AppHeader confirmPDFSubmitted={this.confirmPDFSubmitted}/>
+        {!this.state.pdfUploaded &&
+          <AppHeader confirmPDFSubmitted={this.confirmPDFSubmitted} />
         }
       </div>
     );
