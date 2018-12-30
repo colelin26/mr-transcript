@@ -1,8 +1,16 @@
-import { UPLOAD_MESSAGES, TOGGLE_DROPBOX, CANCEL_FILE_DIALOG, SUBMIT_PDF, UPLOAD_ERROR, UPLOAD_SUCCESS } from '../actions/UploadPage';
+import {
+  UPLOAD_MESSAGES,
+  TOGGLE_DROPBOX,
+  CANCEL_FILE_DIALOG,
+  SUBMIT_PDF,
+  UPLOAD_ERROR,
+  UPLOAD_SUCCESS
+} from '../actions/UploadPage';
 
 const PDFInfo = (
   state = {
     pdfDropped: false,
+    pdfSubmitted: false,
     message: UPLOAD_MESSAGES.welcome_message,
     files: []
   },
@@ -18,7 +26,6 @@ const PDFInfo = (
         });
       return Object.assign({}, state, {
         message: UPLOAD_MESSAGES.welcome_message,
-        pdfDropped: false,
         files: []
       });
     case CANCEL_FILE_DIALOG:
@@ -29,8 +36,7 @@ const PDFInfo = (
       });
     case SUBMIT_PDF:
       return Object.assign({}, state, {
-        message: UPLOAD_MESSAGES.submit_button,
-        pdfDropped: false
+        message: UPLOAD_MESSAGES.submit_button
       });
     case UPLOAD_ERROR:
       return Object.assign({}, state, {
@@ -41,7 +47,7 @@ const PDFInfo = (
     case UPLOAD_SUCCESS:
       return Object.assign({}, state, {
         message: UPLOAD_MESSAGES.upload_success,
-        pdfDropped: true,
+        pdfSubmitted: true,
         files: [],
         Transcript: action.Transcript
       });

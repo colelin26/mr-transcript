@@ -21,7 +21,7 @@ const styles = theme => ({
 });
 
 function SimpleTable(props) {
-  const { classes, rows} = props;
+  const { classes, rows } = props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>

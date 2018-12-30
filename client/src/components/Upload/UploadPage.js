@@ -55,11 +55,11 @@ const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel 
   </div>
 );
 
-UploadPage.prototype = {
+UploadPage.propTypes = {
   pdfDropped: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
   message: PropTypes.string.isRequired,
-  uploadPDF: PropTypes.func.isRequired,
+  submitPDF: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired
 };

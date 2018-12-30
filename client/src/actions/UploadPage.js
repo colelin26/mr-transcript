@@ -31,6 +31,7 @@ export const UPLOAD_MESSAGES = {
   upload_success: 'Transcript has been successfuly uploaded and scraped...'
 };
 
+// Action Types
 export const TOGGLE_DROPBOX = 'ToggleDropbox';
 export const CANCEL_FILE_DIALOG = 'CancelFileDialog';
 export const SUBMIT_PDF = 'SubmitPDF';

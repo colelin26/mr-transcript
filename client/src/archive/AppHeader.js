@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import Dragbox from './Dropfile';
+import request from 'superagent';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import request from 'superagent';
+import Dragbox from './Dropfile';
+
 require('./AppHeader.css');
 
 const styles = theme => ({
   button: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit
   },
   input: {
-    display: 'none',
+    display: 'none'
   },
   header: {
     display: 'flex',
@@ -25,19 +26,19 @@ const styles = theme => ({
     fontSize: 'calc(10px + 2vmin)',
     backgroundColor: 'aliceblue',
     opacity: '0.7',
-    fontFamily: "'Open Sans', sans-serif",
+    fontFamily: "'Open Sans', sans-serif"
   },
   container: {
     minHeight: '100vh',
     display: 'flex',
     height: '100%',
-    width: '100%',
+    width: '100%'
   },
   '@media (min-width: 930px)': {
     header: {
-      width: '34%',
-    },
-  },
+      width: '34%'
+    }
+  }
 });
 
 class Header extends Component {
@@ -45,7 +46,7 @@ class Header extends Component {
     super(props);
     this.state = {
       pdfDropped: false,
-      file: [],
+      file: []
     };
     this.togglePDFDropped = this.togglePDFDropped.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
@@ -54,7 +55,7 @@ class Header extends Component {
   togglePDFDropped(files, bool) {
     this.setState({
       pdfDropped: bool,
-      files: files,
+      files: files
     });
   }
 
@@ -71,9 +72,7 @@ class Header extends Component {
     return (
       <div className={`${this.props.container} bg`}>
         <header className={this.props.classes.header}>
-          <h1>
-            WATranscript
-          </h1>
+          <h1>WATranscript</h1>
           <Dragbox togglePDFDropped={this.togglePDFDropped} />
           <p>
             Upload your UW transcript to see the magic
