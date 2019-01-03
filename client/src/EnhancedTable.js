@@ -17,8 +17,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddCircle from '@material-ui/icons/AddCircle';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import TagButton from './TagButton';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import TagButton from './TagButton';
+
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
