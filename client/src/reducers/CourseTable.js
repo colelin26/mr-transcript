@@ -1,5 +1,8 @@
 import { SORTING_ORDERS, SETUP_SORT, SELECT_ITEM, SELECT_ALL } from '../actions/CourseTable';
 import { UPLOAD_SUCCESS } from '../actions/UploadPage';
+import { DELETE_COURSE, ADD_TAG, REMOVE_TAG } from '../actions/ControlCourses';
+
+import { ControlCourses } from './CourseTableHelper/ControlCourses';
 
 const Table = (
   state = {
@@ -56,6 +59,10 @@ const Table = (
         Transcript: action.Transcript,
         currentData: action.Transcript.courses
       });
+    case ADD_TAG:
+    case REMOVE_TAG:
+    case DELETE_COURSE:
+      return ControlCourses(state, action);
     default:
       return state;
   }

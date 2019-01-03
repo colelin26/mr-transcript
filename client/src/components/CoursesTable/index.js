@@ -22,8 +22,10 @@ const styles = theme => ({
 
 const CoursesTable = ({ classes }) => (
   <Paper className={classes.root}>
-    <CourseToolBar />
-    <StatusCard />
+    <div>
+      <CourseToolBar />
+      <StatusCard />
+    </div>
     <div className={classes.tableWrapper}>
       <Table className={classes.table} aria-labelledby="CourseTable">
         <CourseTableHeader />

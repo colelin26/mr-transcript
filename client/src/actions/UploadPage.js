@@ -1,26 +1,3 @@
-// let nextTodoId = 0
-// export const addTodo = text => ({
-//   type: 'ADD_TODO',
-//   id: nextTodoId++,
-//   text
-// })
-
-// export const setVisibilityFilter = filter => ({
-//   type: 'SET_VISIBILITY_FILTER',
-//   filter
-// })
-
-// export const toggleTodo = id => ({
-//   type: 'TOGGLE_TODO',
-//   id
-// })
-
-// export const VisibilityFilters = {
-//   SHOW_ALL: 'SHOW_ALL',
-//   SHOW_COMPLETED: 'SHOW_COMPLETED',
-//   SHOW_ACTIVE: 'SHOW_ACTIVE'
-// }
-
 import request from 'superagent';
 
 export const UPLOAD_MESSAGES = {
@@ -65,6 +42,16 @@ export const submitPDF = () => (dispatch, getState) => {
   const PDFFile = state.PDFInfo.files[0];
   const req = request.post('/upload');
   req.attach('transcript', PDFFile);
+  dispatch(submitting());
+  req.end((err, res) => {
+    if (err) dispatch(uploadError);
+    dispatch(uploadSuccess(res.body));
+    return Promise.resolve();
+  });
+};
+
+export const getDemo = () => (dispatch, getState) => {
+  const req = request.get('/getDemo');
   dispatch(submitting());
   req.end((err, res) => {
     if (err) dispatch(uploadError);

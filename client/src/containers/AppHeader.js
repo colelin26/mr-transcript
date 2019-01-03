@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { onDrop, onCancel, submitPDF } from '../actions/UploadPage';
+import { onDrop, onCancel, submitPDF, getDemo } from '../actions/UploadPage';
 import UploadPage from '../components/Upload/UploadPage';
 
 const mapStateToProps = state => ({
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onDrop,
   onCancel,
-  submitPDF
+  submitPDF,
+  getDemo
 };
 
 export default connect(

@@ -4,15 +4,20 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import AddCircle from '@material-ui/icons/AddCircle';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const toolbarStyles = theme => ({
   root: {
-    paddingRight: theme.spacing.unit
+    paddingRight: theme.spacing.unit,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap'
   },
   highlight:
     theme.palette.type === 'light'
@@ -24,18 +29,22 @@ const toolbarStyles = theme => ({
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.secondary.dark
         },
-  spacer: {
-    flex: '1 1 100%'
-  },
   actions: {
-    color: theme.palette.text.secondary
+    display: 'flex',
+    color: theme.palette.text.secondary,
+    flex: '1 1 auto',
+    flexFlow: 'row-wrap',
+    justifyContent: 'flex-end'
+  },
+  button: {
+    margin: theme.spacing.unit
   },
   title: {
-    flex: '0 0 auto'
+    flex: '0 0 20%'
   }
 });
 
-const EnhancedTableToolbar = ({ numSelected, classes }) => (
+const EnhancedTableToolbar = ({ numSelected, classes, addTag, removeTag, deleteCourse }) => (
   <Toolbar
     className={classNames(classes.root, {
       [classes.highlight]: numSelected > 0
@@ -52,14 +61,21 @@ const EnhancedTableToolbar = ({ numSelected, classes }) => (
         </Typography>
       )}
     </div>
-    <div className={classes.spacer} />
     <div className={classes.actions}>
       {numSelected > 0 ? (
-        <Tooltip title="Add New Tag">
-          <IconButton aria-label="Add New Tag">
-            <AddCircle />
-          </IconButton>
-        </Tooltip>
+        <div>
+          <Button variant="contained" className={classes.button} onClick={() => addTag('inavg')}>
+            Include in Average
+          </Button>
+          <Button variant="contained" className={classes.button} onClick={() => removeTag('inavg')}>
+            Exclude in Average
+          </Button>
+          <Tooltip title="Delete the selected course">
+            <IconButton aria-label="Delete the selected course" onClick={deleteCourse}>
+              <DeleteForever />
+            </IconButton>
+          </Tooltip>
+        </div>
       ) : (
         <Tooltip title="Filter list">
           <IconButton aria-label="Filter list">
@@ -76,4 +92,4 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired
 };
 
-export default withStyles(toolbarStyles)(EnhancedTableToolbar);
+export default withStyles(toolbarStyles, { withTheme: true })(EnhancedTableToolbar);

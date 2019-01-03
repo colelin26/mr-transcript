@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 
 const Dragbox = ({ onDrop, onCancel, message }) => (
   <section>
-    <div className="dropzone">
-      <Dropzone
-        onDrop={onDrop}
-        onFileDialogCancel={onCancel}
-        accept="application/pdf"
-        multiple={false}
-      >
-        <p>{message}</p>
-      </Dropzone>
-    </div>
+    <Dropzone
+      onDrop={onDrop}
+      onFileDialogCancel={onCancel}
+      accept="application/pdf"
+      multiple={false}
+    >
+      <p>{message}</p>
+    </Dropzone>
   </section>
 );
 

@@ -2,8 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const path = require('path');
+const fs = require('fs');
 const scraper = require('./server/scrape/transcriptScraper');
 const utils = require('./server/utils/utils');
+
+const demoPath = './upload/cole.pdf';
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -22,8 +25,14 @@ app.post('/upload', async (req, res) => {
       return res.status(500).send(err);
     }
     const pdfJSON = await scraper.scrapePDF(pdfPath);
+    fs.unlinkSync(pdfPath);
     return res.json(pdfJSON);
   });
+});
+
+app.get('/getDemo', async (req, res) => {
+  const pdfJSON = await scraper.scrapePDF(demoPath);
+  return res.json(pdfJSON);
 });
 
 if (process.env.NODE_ENV === 'production') {

@@ -47,7 +47,6 @@ const TableBodyComponent = ({
   <TableBody className={classes.tableBody}>
     {stableSort(currentData, getSorting(order, orderBy)).map(n => {
       const isSelected = selected.hasOwnProperty(n.id);
-      console.log(n.id, isSelected);
       return (
         <TableRow hover aria-checked={isSelected} tabIndex={-1} key={n.id} selected={isSelected}>
           <TableCell padding="checkbox">

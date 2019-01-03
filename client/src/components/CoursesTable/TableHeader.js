@@ -63,8 +63,8 @@ const rows = [
     id: 'tag',
     numeric: false,
     disablePadding: false,
-    label: 'Tagss',
-    description: 'The tags the course is in, can be customized on this page'
+    label: 'Tags',
+    description: 'The tags the course have, can be customized on this page'
   }
 ];
 

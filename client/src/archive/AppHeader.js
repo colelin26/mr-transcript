@@ -74,22 +74,25 @@ class Header extends Component {
         <header className={this.props.classes.header}>
           <h1>WATranscript</h1>
           <Dragbox togglePDFDropped={this.togglePDFDropped} />
-          <p>
-            Upload your UW transcript to see the magic
-          </p>
-          {
-            this.state.pdfDropped &&
-            <Button variant="contained" color="primary" className={this.props.classes.button} onClick={this.uploadFile}>
+          <p>Upload your UW transcript to see the magic</p>
+          {this.state.pdfDropped && (
+            <Button
+              variant="contained"
+              color="primary"
+              className={this.props.classes.button}
+              onClick={this.uploadFile}
+            >
               I'm Ready
             </Button>
-          }
+          )}
         </header>
-      </div>);
+      </div>
+    );
   }
 }
 
 Header.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles, { withTheme: true })(Header);
