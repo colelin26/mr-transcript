@@ -1,5 +1,5 @@
 import { updateItemInArray } from '../../utils/helper';
-import { createCourse } from '../../utils/GPACalculator';
+import { createCourse, percentageToFPO } from '../../utils/GPACalculator';
 import { DELETE_COURSE, ADD_TAG, REMOVE_TAG, ADD_COURSE } from '../../actions/ControlCourses';
 
 export const ControlCourses = (TableState, action) => {
@@ -31,7 +31,14 @@ export const ControlCourses = (TableState, action) => {
       selected = {};
       return { ...TableState, currentData, selected };
     case ADD_COURSE:
-      return { ...TableState, currentData: [...currentData, createCourse(action.course)] };
+      let course = action.course;
+      course.id = action.id;
+      if (course.percentage_grade) course.percentage_grade = +course.percentage_grade;
+      else course.percentage_grade = '';
+      if (course.auto_fpo) course.fpo_scale = percentageToFPO(course.percentage_grade);
+      else if (course.fpo_scale) course.fpo_scale = +course.fpo_scale;
+      delete course.auto_fpo;
+      return { ...TableState, currentData: [...currentData, createCourse(course)] };
     default:
       return TableState;
   }

@@ -15,8 +15,8 @@ export const defaultSchema = {
 
 export const createCourse = course => {
   course.tag = {};
-  if (course.percentage_grade) course.tag.fgo = true;
-  if (course.percentage_grade) course.tag.inavg = true;
+  if (Number(course.percentage_grade)) course.tag.hasGrade = true;
+  if (Number(course.percentage_grade) && Number(course.fpo_scale)) course.tag.inavg = true;
   return Object.assign({}, course);
 };
 
@@ -44,7 +44,7 @@ export const courseFilter = (
 ) => {
   if (course.percentage_grade === undefined) return false;
   if (isNaN(course.percentage_grade)) return false;
-  if (isNaN(course.fgo)) return false;
+  if (isNaN(course.hasGrade)) return false;
   if (course.percentage_grade < lowerbound) return false;
   if (course.percentage_grade > upperbound) return false;
   if (courseLetterRegex !== undefined && courseLetterRegex.test(course.course_letter)) return false;

@@ -5,7 +5,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForever from '@material-ui/icons/DeleteForever';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -62,7 +61,7 @@ const EnhancedTableToolbar = ({ numSelected, classes, addTag, removeTag, deleteC
       )}
     </div>
     <div className={classes.actions}>
-      {numSelected > 0 ? (
+      {numSelected > 0 && (
         <div>
           <Button variant="contained" className={classes.button} onClick={() => addTag('inavg')}>
             Include in Average
@@ -76,12 +75,6 @@ const EnhancedTableToolbar = ({ numSelected, classes, addTag, removeTag, deleteC
             </IconButton>
           </Tooltip>
         </div>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="Filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
       )}
     </div>
   </Toolbar>

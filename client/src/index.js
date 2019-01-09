@@ -22,7 +22,11 @@ const initialState = {
     currentData: [],
     orderBy: 'id',
     order: SORTING_ORDERS.ASC,
-    selected: {}
+    selected: {},
+    tagMap: {
+      hasGrade: 'grade available',
+      inavg: 'in average'
+    }
   },
   HomePage: {
     title: 'WA-Transcript',

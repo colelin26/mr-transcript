@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   button: {
@@ -17,15 +18,16 @@ const styles = theme => ({
     flexDirection: 'row'
   }
 });
-const OutlinedButtons = ({ classes, tags }) => {
+let OutlinedButtons = ({ classes, tags, tagMap }) => {
   const buttons = Object.keys(tags)
     .filter(key => {
+      if (key === 'hasGrade') return false;
       if (tags[key]) return true;
       return false;
     })
     .map(tag => (
       <Button variant="outlined" className={classes.button}>
-        {tag}
+        {tagMap[tag]}
       </Button>
     ));
   return <div className={classes.container}>{buttons}</div>;
@@ -36,4 +38,11 @@ OutlinedButtons.propTypes = {
   tags: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(OutlinedButtons);
+OutlinedButtons = withStyles(styles)(OutlinedButtons);
+
+export default connect(
+  state => ({
+    tagMap: state.Table.tagMap
+  }),
+  null
+)(OutlinedButtons);

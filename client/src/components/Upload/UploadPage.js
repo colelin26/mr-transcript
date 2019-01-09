@@ -61,9 +61,13 @@ const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel,
             I am Ready
           </Button>
         )}
-        <Typography component="p">Upload your UW transcript to see the magic</Typography>
         <Typography component="p">
-          Your transcript will not be saved on the server. See{' '}
+          Upload your UW transcript to calculate your 4.0 GPA and check graduation requirements
+        </Typography>
+        <br />
+        <Typography component="p">
+          Your transcript PDF or transcript Data will not be saved on the server. The Heroku
+          filesystem is ephemeral. Also, see{' '}
           <a href="https://github.com/colelin26/WATranscript/blob/master/server.js">
             the source code
           </a>

@@ -34,11 +34,11 @@ function course_filter(lowerbound, upperbound, force, course, courseLetterRegex)
 exports.courses_add_fpo = function courses_add_fpo(courses) {
   courses.forEach(course => {
     if (course_filter(0, 100, false, course)) {
-      course.tag['fgo'] = true;
-    } else course.tag['fgo'] = false;
+      course.tag['hasGrade'] = true;
+    } else course.tag['hasGrade'] = false;
   });
   courses.forEach(course => {
-    if (course.tag['fgo']) course.fpo_scale = exports.course_fpo(course);
+    if (course.tag['hasGrade']) course.fpo_scale = exports.course_fpo(course);
   });
 };
 

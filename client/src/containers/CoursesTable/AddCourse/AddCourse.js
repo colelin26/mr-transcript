@@ -31,12 +31,12 @@ const styles = theme => ({
     width: 'auto'
   },
   spacer: {
-    flex: '1 1 30%'
+    flex: '1 1'
   },
   button: {
     margin: theme.spacing.unit,
     justifyContent: 'end',
-    height: '80%'
+    height: '100%'
   }
 });
 
@@ -74,13 +74,28 @@ let AddCourse = ({
   <Toolbar className={classes.root}>
     <form onSubmit={handleSubmit} className={classes.container}>
       <Field name="course_letter" component={renderTextField} label="Course Letter" />
-      <Field name="course_number" component={renderTextField} label="Course Number" />
+      <Field
+        name="course_number"
+        component={renderTextField}
+        label="Course Number"
+        type={'number'}
+      />
       <Field name="course_name" component={renderTextField} label="Course Name" />
-      <Field name="percentage_grade" component={renderTextField} label="Percentage Grade" />
+      <Field
+        name="percentage_grade"
+        component={renderTextField}
+        label="Percentage Grade"
+        type={'number'}
+      />
       <Field name="level" component={renderTextField} label="Term" />
       <Field name="earned_credit" component={renderTextField} label="Earned Credit" />
       {!confirmedAutoConversion && (
-        <Field name="fpo_scale" component={renderTextField} label="Points out of 4.0" />
+        <Field
+          name="fpo_scale"
+          component={renderTextField}
+          label="Points out of 4.0"
+          type="number"
+        />
       )}
       {confirmedAutoConversion && (
         <TextField
@@ -90,6 +105,7 @@ let AddCourse = ({
           defaultValue="Calculated 4.0 points"
           value={percentageToFPO(percentageGrade)}
           className={classes.textField}
+          type={'number'}
         />
       )}
       <Field name="auto_fpo" component={renderCheckbox} label="Auto 4.0 Conversion" />
@@ -101,7 +117,7 @@ let AddCourse = ({
         disabled={pristine || submitting}
         className={classes.button}
       >
-        Add New Course
+        Add Course
       </Button>
     </form>
   </Toolbar>
@@ -111,7 +127,8 @@ AddCourse = withStyles(styles)(AddCourse);
 
 AddCourse = reduxForm({
   form: 'AddCourse', // a unique identifier for this form
-  validate
+  validate,
+  enableReinitialize: true
 })(AddCourse);
 
 const selector = formValueSelector('AddCourse');
@@ -120,9 +137,13 @@ AddCourse = connect(
   state => {
     const confirmedAutoConversion = selector(state, 'auto_fpo');
     const percentageGrade = selector(state, 'percentage_grade');
+    const initialValues = {
+      auto_fpo: true
+    };
     return {
       confirmedAutoConversion,
-      percentageGrade
+      percentageGrade,
+      initialValues
     };
   },
   null

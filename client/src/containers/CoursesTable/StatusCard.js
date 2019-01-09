@@ -30,23 +30,23 @@ const styles = {
   }
 };
 
-const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale }) => (
+const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale, tagMap }) => (
   <Card className={classes.card}>
     <CardContent>
       <Typography className={classes.title} color="textSecondary" gutterBottom>
         Summary of displaying courses
       </Typography>
       <Typography component="p">
-        4.0 scale GPA of the{' '}
+        4.0 scale GPA of the courses with the tag{' '}
         <Button variant="outlined" className={classes.button}>
-          INAVG
+          {tagMap.inavg}
         </Button>{' '}
-        courses is {fpo_avg}. <br />
-        Percentage scale of the{' '}
+        is {fpo_avg}. <br />
+        Percentage scale of the courses with the tag{' '}
         <Button variant="outlined" className={classes.button}>
-          INAVG
+          {tagMap.inavg}
         </Button>{' '}
-        courses is {percentage_scale} <br />
+        is {percentage_scale} <br />
       </Typography>
     </CardContent>
   </Card>
@@ -62,7 +62,8 @@ const StatusCard = withStyles(styles)(UnstyledStatusCard);
 
 const mapStateToProps = state => ({
   fpo_avg: calculateAverage(state.Table.currentData, 'fpo_scale', 'inavg'),
-  percentage_scale: calculateAverage(state.Table.currentData, 'percentage_grade', 'inavg')
+  percentage_scale: calculateAverage(state.Table.currentData, 'percentage_grade', 'inavg'),
+  tagMap: state.Table.tagMap
 });
 
 export default connect(

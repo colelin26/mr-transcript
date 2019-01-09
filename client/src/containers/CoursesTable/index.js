@@ -31,12 +31,7 @@ const CoursesTable = ({ classes, addCourse, id }) => (
       <StatusCard />
       <AddCourse
         onSubmit={values => {
-          values.id = id;
-          if (values.auto_fpo) values.fpo_scale = percentageToFPO(values.percentage_grade);
-          else values.fpo_scale = +values.fpo_scale;
-          values.percentage_grade = +values.percentage_grade;
-          delete values.auto_fpo;
-          addCourse(values);
+          addCourse(values, id);
         }}
       />
     </div>
