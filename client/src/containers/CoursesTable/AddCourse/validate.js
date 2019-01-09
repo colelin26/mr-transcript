@@ -1,7 +1,3 @@
-const REGEXES = {
-  allAlphabet: /[a-zA-Z]/
-};
-
 export default function(values) {
   const errors = {};
   const requiredFields = [
