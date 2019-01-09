@@ -7,7 +7,7 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
 import { UPLOAD_MESSAGES } from './actions/UploadPage';
 import { SORTING_ORDERS } from './actions/CourseTable';
-import App from './components/App';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
 const initialState = {
