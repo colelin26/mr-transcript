@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import CoursesTable from '../CoursesTable';
+import CoursesTable from '../../containers/CoursesTable';
 import NavBar from '../../containers/HomePage/NavBar';
 import Drawer from '../../containers/HomePage/Drawer';
 import { drawerWidth } from '../../actions/HomePage';

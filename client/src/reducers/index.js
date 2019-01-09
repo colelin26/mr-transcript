@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
+
 import PDFInfo from './PDFInfo';
 import Table from './CourseTable';
 import HomePage from './HomePage';
@@ -8,5 +10,6 @@ export default combineReducers({
   PDFInfo,
   Table,
   HomePage,
-  Status
+  Status,
+  form: formReducer
 });

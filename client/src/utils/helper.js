@@ -21,10 +21,6 @@ export const updateObject = (oldObject, newValues) =>
 
 export const updateItemInArray = (array, itemId, updateItemCallback) => {
   const updatedItems = array.map(item => {
-    console.log({
-      itemId: item.id,
-      itemID: itemId
-    });
     if (item.id !== itemId) {
       // Since we only want to update one item, preserve all others as they are now
       return item;

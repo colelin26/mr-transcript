@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { calculateAverage } from '../../utils/GPACalculator';
 
@@ -21,6 +22,11 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  button: {
+    margin: '1px',
+    height: 'auto',
+    width: 'auto'
   }
 };
 
@@ -31,9 +37,16 @@ const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale }) => (
         Summary of displaying courses
       </Typography>
       <Typography component="p">
-        4.0 scale GPA of the current courses is {fpo_avg}. <br />
-        Percentage Scale of the current courses is {percentage_scale} <br />
-        Calculation: Only courses with the INAVG tag is calculated in the GPA
+        4.0 scale GPA of the{' '}
+        <Button variant="outlined" className={classes.button}>
+          INAVG
+        </Button>{' '}
+        courses is {fpo_avg}. <br />
+        Percentage scale of the{' '}
+        <Button variant="outlined" className={classes.button}>
+          INAVG
+        </Button>{' '}
+        courses is {percentage_scale} <br />
       </Typography>
     </CardContent>
   </Card>

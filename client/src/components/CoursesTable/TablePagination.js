@@ -1,5 +1,0 @@
-rowsPerPage,
-    page,
-    handleButtonFilter,
-    handleChangePage,
-    handleChaneRowsPerPage,

@@ -1,5 +1,6 @@
-import { createReducer, updateObject, updateItemInArray } from '../../utils/helper';
-import { DELETE_COURSE, ADD_TAG, REMOVE_TAG } from '../../actions/ControlCourses';
+import { updateItemInArray } from '../../utils/helper';
+import { createCourse } from '../../utils/GPACalculator';
+import { DELETE_COURSE, ADD_TAG, REMOVE_TAG, ADD_COURSE } from '../../actions/ControlCourses';
 
 export const ControlCourses = (TableState, action) => {
   let { currentData, selected } = TableState;
@@ -29,6 +30,8 @@ export const ControlCourses = (TableState, action) => {
       );
       selected = {};
       return { ...TableState, currentData, selected };
+    case ADD_COURSE:
+      return { ...TableState, currentData: [...currentData, createCourse(action.course)] };
     default:
       return TableState;
   }

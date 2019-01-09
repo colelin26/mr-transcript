@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 const styles = theme => ({
   button: {
     margin: '1px',
-    height: '1rem',
+    height: 'auto',
     width: 'auto'
   },
   input: {

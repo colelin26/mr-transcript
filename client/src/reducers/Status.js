@@ -2,7 +2,8 @@ import { UPLOAD_SUCCESS } from '../actions/UploadPage';
 
 const Status = (
   state = {
-    fpo_avg: 'not defined'
+    fpo_avg: 'not defined',
+    percentage_scale: 'not defined'
   },
   action
 ) => {

@@ -13,13 +13,20 @@ export const defaultSchema = {
   50: 0.7
 };
 
+export const createCourse = course => {
+  course.tag = {};
+  if (course.percentage_grade) course.tag.fgo = true;
+  if (course.percentage_grade) course.tag.inavg = true;
+  return Object.assign({}, course);
+};
+
 // return the fpo correspondence of a course
 export const percentageToFPO = (percentageGrade, schema = defaultSchema) => {
   const conditions = Object.keys(schema)
     .sort()
     .reverse();
   for (let i = 0; i < conditions.length; i++) {
-    if (percentageGrade > conditions[i]) {
+    if (Number(percentageGrade) > Number(conditions[i])) {
       return schema[conditions[i]];
     }
   }

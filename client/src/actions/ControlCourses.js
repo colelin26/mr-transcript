@@ -5,7 +5,9 @@ export const DELETE_COURSE = 'DELETE_COURSE';
 export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 export const INVALID_ACTION = 'INVALID_ACTION';
+export const CONVERT_TO_FPO = 'CONVERT_TO_FPO';
 
+export const convertToFPO = makeActionCreator(CONVERT_TO_FPO, 'course');
 export const addCourse = makeActionCreator(ADD_COURSE, 'course');
 export const deleteCourse = makeActionCreator(DELETE_COURSE);
 export const addTag = makeActionCreator(ADD_TAG, 'tag');
