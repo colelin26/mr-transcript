@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/index.css';
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
@@ -34,10 +35,16 @@ const initialState = {
   }
 };
 
-const store = compose(
-  applyMiddleware(thunkMiddleware),
-  window.devToolsExtension && window.devToolsExtension()
-)(createStore)(rootReducer, initialState);
+// const store = composeWithDevTools(
+//   applyMiddleware(thunkMiddleware),
+//   window.devToolsExtension && window.devToolsExtension()
+// )(createStore)(rootReducer, initialState);
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
+);
 
 ReactDOM.render(
   <Provider store={store}>
