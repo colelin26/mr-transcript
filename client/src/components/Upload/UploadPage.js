@@ -66,10 +66,14 @@ const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel,
         </Typography>
         <br />
         <Typography component="p">
-          Your transcript PDF or transcript Data will not be saved on the server. The Heroku
-          filesystem is ephemeral. Also, see{' '}
-          <a href="https://github.com/colelin26/WATranscript/blob/master/server.js">
-            the source code
+          Your transcript PDF or transcript Data will not be saved on the server as Heroku
+          filesystem is ephemeral. You can also check{' '}
+          <a
+            href="https://github.com/colelin26/WATranscript/blob/master/server.js"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            the source code.
           </a>
         </Typography>
         <br />

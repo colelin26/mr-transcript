@@ -45,7 +45,6 @@ const Table = (
         selected
       });
     case SELECT_ITEM:
-      // const newSelected = Object.assign({}, selected);
       if (selected[action.id]) {
         delete selected[action.id];
       } else {

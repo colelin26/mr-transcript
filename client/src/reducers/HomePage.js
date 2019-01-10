@@ -1,10 +1,11 @@
-import { TOGGLE_DRAWER } from '../actions/HomePage';
+import { TOGGLE_DRAWER, TOGGLE_ABOUT } from '../actions/HomePage';
 
 const HomePage = (
   state = {
     title: 'WA-Transcript',
     UI: {
-      drawerOpen: false
+      drawerOpen: false,
+      aboutOpen: false
     }
   },
   action
@@ -12,6 +13,8 @@ const HomePage = (
   switch (action.type) {
     case TOGGLE_DRAWER:
       return { ...state, UI: { ...state.UI, drawerOpen: !state.UI.drawerOpen } };
+    case TOGGLE_ABOUT:
+      return { ...state, UI: { ...state.UI, aboutOpen: !state.UI.aboutOpen } };
     default:
       return state;
   }

@@ -13,7 +13,7 @@ export const deleteCourse = makeActionCreator(DELETE_COURSE);
 export const addTag = makeActionCreator(ADD_TAG, 'tag', 'id');
 export const removeTag = makeActionCreator(REMOVE_TAG, 'tag', 'id');
 
-export const reqeustAddTag = tag => (dispatch, getState) => {
+export const requestAddTag = tag => (dispatch, getState) => {
   const { selected, currentData } = getState().Table;
   if (tag === 'inavg') {
     for (const key in selected) {

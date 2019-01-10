@@ -33,7 +33,8 @@ const initialState = {
   HomePage: {
     title: 'WA-Transcript',
     UI: {
-      drawerOpen: false
+      drawerOpen: false,
+      aboutOpen: false
     }
   },
   Status: {

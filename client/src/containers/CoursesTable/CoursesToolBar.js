@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import TableToolBar from '../../components/CoursesTable/TableToolBar';
-import { reqeustAddTag, requestRemoveTag, deleteCourse } from '../../actions/ControlCourses';
+import { requestAddTag, requestRemoveTag, deleteCourse } from '../../actions/ControlCourses';
+import { toggleAbout } from '../../actions/HomePage';
 import { enqueueSnackbar } from '../../actions/Notifier';
 
 const mapStateToProps = state => {
@@ -11,10 +12,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  reqeustAddTag,
+  requestAddTag,
   requestRemoveTag,
   deleteCourse,
-  enqueueSnackbar
+  enqueueSnackbar,
+  toggleAbout
 };
 
 export default connect(

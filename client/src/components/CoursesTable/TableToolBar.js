@@ -5,11 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteForever from '@material-ui/icons/DeleteForever';
+import Help from '@material-ui/icons/Help';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Notifier from '../Utils/Notifier';
+import About from '../../containers/CoursesTable/About';
 
 const toolbarStyles = theme => ({
   root: {
@@ -40,16 +42,22 @@ const toolbarStyles = theme => ({
     margin: theme.spacing.unit
   },
   title: {
-    flex: '0 0 20%'
+    flex: '1 1',
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  titleName: {
+    margin: 'auto 0'
   }
 });
 
 const EnhancedTableToolbar = ({
   numSelected,
   classes,
-  reqeustAddTag,
+  requestAddTag,
   requestRemoveTag,
-  deleteCourse
+  deleteCourse,
+  toggleAbout
 }) => (
   <Toolbar
     className={classNames(classes.root, {
@@ -63,9 +71,17 @@ const EnhancedTableToolbar = ({
           {numSelected} selected
         </Typography>
       ) : (
-        <Typography variant="h6" id="tableTitle">
-          Courses Table
-        </Typography>
+        <div className={classes.title}>
+          <Typography variant="h5" id="tableTitle" className={classes.titleName}>
+            Courses Table
+          </Typography>
+          <Tooltip title="See the instruction of the app">
+            <IconButton aria-label="See the instruction of the app" onClick={toggleAbout}>
+              <Help />
+            </IconButton>
+          </Tooltip>
+          <About />
+        </div>
       )}
     </div>
     <div className={classes.actions}>
@@ -75,7 +91,7 @@ const EnhancedTableToolbar = ({
             variant="contained"
             className={classes.button}
             onClick={() => {
-              reqeustAddTag('inavg');
+              requestAddTag('inavg');
             }}
           >
             Include in Average
