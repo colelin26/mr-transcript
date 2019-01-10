@@ -8,8 +8,7 @@ import CourseTableHeader from './CoursesTableHeader';
 import CourseToolBar from './CoursesToolBar';
 import StatusCard from './StatusCard';
 import AddCourse from './AddCourse/AddCourse';
-import { addCourse } from '../../actions/ControlCourses';
-import { percentageToFPO } from '../../utils/GPACalculator';
+import { requestAddCourse } from '../../actions/ControlCourses';
 
 const styles = theme => ({
   root: {
@@ -24,14 +23,14 @@ const styles = theme => ({
   }
 });
 
-const CoursesTable = ({ classes, addCourse, id }) => (
+const CoursesTable = ({ classes, requestAddCourse, id }) => (
   <Paper className={classes.root}>
     <div>
       <CourseToolBar />
       <StatusCard />
       <AddCourse
         onSubmit={values => {
-          addCourse(values, id);
+          requestAddCourse(values, id);
         }}
       />
     </div>
@@ -49,7 +48,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addCourse
+  requestAddCourse
 };
 
 export default connect(

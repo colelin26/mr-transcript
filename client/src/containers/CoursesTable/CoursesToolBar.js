@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import TableToolBar from '../../components/CoursesTable/TableToolBar';
-import { addTag, removeTag, deleteCourse } from '../../actions/ControlCourses';
+import { reqeustAddTag, requestRemoveTag, deleteCourse } from '../../actions/ControlCourses';
+import { enqueueSnackbar } from '../../actions/Notifier';
 
 const mapStateToProps = state => {
   const numSelected = Object.keys(state.Table.selected).length;
@@ -10,9 +11,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  addTag,
-  removeTag,
-  deleteCourse
+  reqeustAddTag,
+  requestRemoveTag,
+  deleteCourse,
+  enqueueSnackbar
 };
 
 export default connect(

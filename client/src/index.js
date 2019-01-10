@@ -5,10 +5,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import { SnackbarProvider } from 'notistack';
 import rootReducer from './reducers';
 import { UPLOAD_MESSAGES } from './actions/UploadPage';
 import { SORTING_ORDERS } from './actions/CourseTable';
 import App from './containers/App';
+
 import * as serviceWorker from './serviceWorker';
 
 const initialState = {
@@ -52,7 +54,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <SnackbarProvider>
+      <App />
+    </SnackbarProvider>
   </Provider>,
   document.getElementById('root')
 );

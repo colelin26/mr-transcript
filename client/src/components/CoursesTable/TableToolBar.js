@@ -9,6 +9,7 @@ import { lighten } from '@material-ui/core/styles/colorManipulator';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Notifier from '../Utils/Notifier';
 
 const toolbarStyles = theme => ({
   root: {
@@ -43,12 +44,19 @@ const toolbarStyles = theme => ({
   }
 });
 
-const EnhancedTableToolbar = ({ numSelected, classes, addTag, removeTag, deleteCourse }) => (
+const EnhancedTableToolbar = ({
+  numSelected,
+  classes,
+  reqeustAddTag,
+  requestRemoveTag,
+  deleteCourse
+}) => (
   <Toolbar
     className={classNames(classes.root, {
       [classes.highlight]: numSelected > 0
     })}
   >
+    <Notifier />
     <div className={classes.title}>
       {numSelected > 0 ? (
         <Typography color="inherit" variant="subtitle1">
@@ -63,10 +71,20 @@ const EnhancedTableToolbar = ({ numSelected, classes, addTag, removeTag, deleteC
     <div className={classes.actions}>
       {numSelected > 0 && (
         <div>
-          <Button variant="contained" className={classes.button} onClick={() => addTag('inavg')}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={() => {
+              reqeustAddTag('inavg');
+            }}
+          >
             Include in Average
           </Button>
-          <Button variant="contained" className={classes.button} onClick={() => removeTag('inavg')}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            onClick={() => requestRemoveTag('inavg')}
+          >
             Exclude in Average
           </Button>
           <Tooltip title="Delete the selected course">

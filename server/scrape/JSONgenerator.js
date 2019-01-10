@@ -111,7 +111,7 @@ exports.txt_to_JSON = function txt_to_JSON(txt) {
       courses = courses.concat(scrapeTerm(termStrs[i + 1], date));
     }
     courses.forEach((elem, index) => {
-      elem.id = index + 1;
+      elem.id = index;
       elem.tag = {};
     });
     return courses;

@@ -42,7 +42,7 @@ const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale, tagMap }) => (
           {tagMap.inavg}
         </Button>{' '}
         is {fpo_avg}. <br />
-        Percentage scale of the courses with the tag{' '}
+        Percentage scale average of the courses with the tag{' '}
         <Button variant="outlined" className={classes.button}>
           {tagMap.inavg}
         </Button>{' '}

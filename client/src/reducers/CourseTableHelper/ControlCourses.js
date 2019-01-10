@@ -10,6 +10,7 @@ export const ControlCourses = (TableState, action) => {
         currentData = updateItemInArray(currentData, Number(key), item => {
           console.log('triggered');
           delete item.tag[action.tag];
+          item.tag = Object.assign({}, item.tag);
           return item;
         });
       }
@@ -18,7 +19,7 @@ export const ControlCourses = (TableState, action) => {
     case ADD_TAG:
       for (const key in selected) {
         currentData = updateItemInArray(currentData, Number(key), item => {
-          item.tag[action.tag] = true;
+          item.tag = { ...item.tag, [action.tag]: true };
           return item;
         });
       }

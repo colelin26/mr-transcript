@@ -45,15 +45,16 @@ const Table = (
         selected
       });
     case SELECT_ITEM:
-      const newSelected = Object.assign({}, selected);
+      // const newSelected = Object.assign({}, selected);
       if (selected[action.id]) {
-        delete newSelected[action.id];
+        delete selected[action.id];
       } else {
-        newSelected[action.id] = true;
+        selected[action.id] = true;
       }
-      return Object.assign({}, state, {
-        selected: newSelected
-      });
+      return {
+        ...state,
+        selected: Object.assign({}, selected)
+      };
     case UPLOAD_SUCCESS:
       return Object.assign({}, state, {
         Transcript: action.Transcript,
