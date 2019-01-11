@@ -47,7 +47,7 @@ const AppDrawer = ({ classes, theme, open, handleDrawerOpen }) => (
     <Divider />
     <List>
       <ListItem button key={0}>
-        <ListItemText primary="Courses Table" />
+        <ListItemText primary="Course Table" />
       </ListItem>
       <ListItem button key={1}>
         <ListItemText primary="GPA Converter Schema" />

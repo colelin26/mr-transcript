@@ -74,7 +74,7 @@ const EnhancedTableToolbar = ({
       ) : (
         <div className={classes.title}>
           <Typography variant="h5" id="tableTitle" className={classes.titleName}>
-            Courses Table
+            Course Table
           </Typography>
           <Tooltip title="See the instruction of the app">
             <IconButton aria-label="See the instruction of the app" onClick={toggleAbout}>
