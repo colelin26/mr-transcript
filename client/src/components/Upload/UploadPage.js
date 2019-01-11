@@ -66,7 +66,11 @@ const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel,
           </Button>
         )}
         <Typography component="p">
-          Upload your UW transcript to calculate your 4.0 GPA and check graduation requirements
+          Upload your UW transcript from{' '}
+          <Link href="https://uwaterloo.ca/quest/" target="_blank" rel="noopener noreferrer">
+            Quest
+          </Link>{' '}
+          to calculate your 4.0 GPA
         </Typography>
         <br />
         <Typography component="p">
