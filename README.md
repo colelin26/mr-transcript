@@ -8,11 +8,5 @@ React Web application for UW students to scrape transcript data, convert GPA, ch
 
 # Usage
 
-1. `npm install && cd client && npm install` to install the environment
+1. `npm install && cd client && npm install` to install the environment (A UW API need to be provided for the server to work)
 2. `npm dev` to start the project
-
-# To do lists
-
-1. web scripting for graduation requirement
-2. graphical analysis integration
-3. demo purpose feature
