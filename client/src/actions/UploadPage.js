@@ -4,8 +4,9 @@ export const UPLOAD_MESSAGES = {
   welcome_message: 'Drop your PDF here or Click to upload',
   uploaded_message: (name, size) => `${name} \n ${size} Bytes`,
   submit_button: 'Uploading Transcript...',
-  upload_error: 'Error occured when uploading your transcript, please try again.',
-  upload_success: 'Transcript has been successfuly uploaded and scraped...'
+  upload_error:
+    'The submitted PDF cannot be scraped. Please check if this is the latest transcript downloaded from Quest.',
+  upload_success: 'Transcript has been successfully uploaded and scraped...'
 };
 
 // Action Types
@@ -44,7 +45,10 @@ export const submitPDF = () => (dispatch, getState) => {
   req.attach('transcript', PDFFile);
   dispatch(submitting());
   req.end((err, res) => {
-    if (err) dispatch(uploadError);
+    if (err) {
+      dispatch(uploadError());
+      return Promise.resolve();
+    }
     dispatch(uploadSuccess(res.body));
     return Promise.resolve();
   });

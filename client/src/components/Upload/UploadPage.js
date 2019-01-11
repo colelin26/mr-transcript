@@ -3,10 +3,14 @@ import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
+import Help from '@material-ui/icons/Help';
 import Dragbox from './Dropfile';
+import About from '../../containers/CoursesTable/About';
 
 require('../../assets/Upload/UploadPage.css');
 
@@ -16,6 +20,10 @@ const styles = theme => ({
   },
   button: {
     margin: theme.spacing.unit
+  },
+  titleBox: {
+    flexDirection: 'row',
+    display: 'flex'
   },
   header: {
     minWidth: 275,
@@ -47,11 +55,26 @@ const styles = theme => ({
   }
 });
 
-const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel, getDemo }) => (
+const UploadPage = ({
+  pdfDropped,
+  classes,
+  message,
+  onDrop,
+  submitPDF,
+  onCancel,
+  getDemo,
+  toggleAbout
+}) => (
   <div className={`${classes.container} bg`}>
     <Card className={classes.header}>
-      <CardContent>
+      <CardContent className={classes.titleBox}>
         <Typography className={classes.title}>WATranscript</Typography>
+        <Tooltip title="See the instruction of the app">
+          <IconButton aria-label="See the instruction of the app" onClick={toggleAbout}>
+            <Help />
+          </IconButton>
+        </Tooltip>
+        <About />
       </CardContent>
       <Dragbox onDrop={onDrop} message={message} onCancel={onCancel} />
       <CardContent>

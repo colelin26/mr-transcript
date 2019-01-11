@@ -5,7 +5,6 @@ const path = require('path');
 const fs = require('fs');
 const scraper = require('./server/scrape/transcriptScraper');
 const utils = require('./server/utils/utils');
-const UWAPI = require('./server/utils/UWAPI');
 
 const demoPath = './upload/cole.pdf';
 
@@ -22,10 +21,13 @@ app.post('/upload', async (req, res) => {
   const fileName = utils.generateFilename(pdfFile.name, pdfFile.mimetype);
   const pdfPath = `${__dirname}/upload/${fileName}`;
   await pdfFile.mv(pdfPath, async err => {
-    if (err) {
-      return res.status(500).send(err);
+    let pdfJSON;
+    try {
+      pdfJSON = await scraper.scrapePDF(pdfPath);
+    } catch (err) {
+      fs.unlinkSync(pdfPath);
+      return res.status(500).send('The submitted PDF cannot be scraped.');
     }
-    const pdfJSON = await scraper.scrapePDF(pdfPath);
     fs.unlinkSync(pdfPath);
     return res.json(pdfJSON);
   });
