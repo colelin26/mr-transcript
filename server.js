@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const scraper = require('./server/scrape/transcriptScraper');
 const utils = require('./server/utils/utils');
+const UWAPI = require('./server/utils/UWAPI');
 
 const demoPath = './upload/cole.pdf';
 

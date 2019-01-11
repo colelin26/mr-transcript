@@ -3,13 +3,18 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
+import Tooltip from '@material-ui/core/Tooltip';
 import { withStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import { SORTING_ORDERS } from '../../actions/CourseTable';
 import TagButton from './TagButton';
 
 const styles = theme => ({
   tableBody: {
     minWidth: 1020
+  },
+  link: {
+    margin: theme.spacing.unit
   }
 });
 
@@ -55,8 +60,14 @@ const TableBodyComponent = ({
           <TableCell component="th" scope="row" padding="none">
             {n.course_letter}
           </TableCell>
-          <TableCell numeric>{n.course_number}</TableCell>
-          <TableCell>{n.course_name}</TableCell>
+          <TableCell>{n.course_number}</TableCell>
+          <Tooltip title={n.description}>
+            <TableCell>
+              <Link href={n.url} className={classes.link} target="_blank" rel="noopener">
+                {n.course_name}
+              </Link>
+            </TableCell>
+          </Tooltip>
           <TableCell numeric>{n.fpo_scale}</TableCell>
           <TableCell numeric>{n.percentage_grade}</TableCell>
           <TableCell>{n.level}</TableCell>

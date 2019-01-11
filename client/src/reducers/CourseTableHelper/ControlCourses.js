@@ -1,14 +1,32 @@
 import { updateItemInArray } from '../../utils/helper';
 import { createCourse, percentageToFPO } from '../../utils/GPACalculator';
-import { DELETE_COURSE, ADD_TAG, REMOVE_TAG, ADD_COURSE } from '../../actions/ControlCourses';
+import {
+  DELETE_COURSE,
+  ADD_TAG,
+  REMOVE_TAG,
+  ADD_COURSE,
+  RESTORE_CHANGES
+} from '../../actions/ControlCourses';
+import { SORTING_ORDERS } from '../../actions/CourseTable';
 
-export const ControlCourses = (TableState, action) => {
+const initialTableState = {
+  currentData: [],
+  orderBy: 'id',
+  order: SORTING_ORDERS.ASC,
+  selected: {},
+  tagMap: {
+    hasGrade: 'grade available',
+    inavg: 'in average'
+  }
+};
+
+export const ControlCourses = (TableState = initialTableState, action) => {
   let { currentData, selected } = TableState;
+  const { BackupData } = TableState;
   switch (action.type) {
     case REMOVE_TAG:
       for (const key in selected) {
         currentData = updateItemInArray(currentData, Number(key), item => {
-          console.log('triggered');
           delete item.tag[action.tag];
           item.tag = Object.assign({}, item.tag);
           return item;
@@ -40,6 +58,15 @@ export const ControlCourses = (TableState, action) => {
       else if (course.fpo_scale) course.fpo_scale = +course.fpo_scale;
       delete course.auto_fpo;
       return { ...TableState, currentData: [...currentData, createCourse(course)] };
+    case RESTORE_CHANGES:
+      return {
+        ...initialTableState,
+        currentData: BackupData,
+        BackupData: BackupData.map(obj => ({
+          ...obj,
+          tag: Object.assign({}, obj.tag)
+        }))
+      };
     default:
       return TableState;
   }

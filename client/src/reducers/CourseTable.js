@@ -1,6 +1,12 @@
 import { SORTING_ORDERS, SETUP_SORT, SELECT_ITEM, SELECT_ALL } from '../actions/CourseTable';
 import { UPLOAD_SUCCESS } from '../actions/UploadPage';
-import { ADD_COURSE, DELETE_COURSE, ADD_TAG, REMOVE_TAG } from '../actions/ControlCourses';
+import {
+  ADD_COURSE,
+  DELETE_COURSE,
+  ADD_TAG,
+  REMOVE_TAG,
+  RESTORE_CHANGES
+} from '../actions/ControlCourses';
 
 import { ControlCourses } from './CourseTableHelper/ControlCourses';
 
@@ -55,14 +61,19 @@ const Table = (
         selected: Object.assign({}, selected)
       };
     case UPLOAD_SUCCESS:
+      const coursesDup = action.Transcript.courses.map(obj => ({
+        ...obj,
+        tag: Object.assign({}, obj.tag)
+      }));
       return Object.assign({}, state, {
-        Transcript: action.Transcript,
+        BackupData: coursesDup,
         currentData: action.Transcript.courses
       });
     case ADD_TAG:
     case REMOVE_TAG:
     case DELETE_COURSE:
     case ADD_COURSE:
+    case RESTORE_CHANGES:
       return ControlCourses(state, action);
     default:
       return state;

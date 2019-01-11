@@ -57,7 +57,8 @@ const EnhancedTableToolbar = ({
   requestAddTag,
   requestRemoveTag,
   deleteCourse,
-  toggleAbout
+  toggleAbout,
+  requestRestoreChanges
 }) => (
   <Toolbar
     className={classNames(classes.root, {
@@ -85,7 +86,13 @@ const EnhancedTableToolbar = ({
       )}
     </div>
     <div className={classes.actions}>
-      {numSelected > 0 && (
+      {numSelected === 0 ? (
+        <Tooltip title="Reset all changes you have made">
+          <Button variant="contained" className={classes.button} onClick={requestRestoreChanges}>
+            RESTORE
+          </Button>
+        </Tooltip>
+      ) : (
         <div>
           <Button
             variant="contained"

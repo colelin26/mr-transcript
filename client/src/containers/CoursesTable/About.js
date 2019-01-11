@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import { toggleAbout } from '../../actions/HomePage';
 
 const styles = theme => ({
@@ -23,6 +24,9 @@ const styles = theme => ({
     margin: '1px',
     height: 'auto',
     width: 'auto'
+  },
+  link: {
+    margin: theme.spacing.unit
   }
 });
 
@@ -38,24 +42,33 @@ let About = ({ classes, aboutOpen, toggleAbout }) => (
         About
       </Typography>
       <Typography variant="subtitle2" id="simple-modal-description">
-        The application parses and scrapes the PDF using poppler and Nodejs. The GPA conversion is
-        based on{' '}
-        <a
-          href="https://www.ouac.on.ca/guide/omsas-conversion-table"
+        The GPA conversion is based on{' '}
+        <Link
+          className={classes.link}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
+          href="https://www.ouac.on.ca/guide/omsas-conversion-table"
         >
           OMSAS
-        </a>
-        . Engineering and Math transcripts are used to build the app. There might be chances that
+        </Link>
+        .
+        <Typography variant="subtitle2" id="simple-modal-description">
+          Earned credits are also taken into the factor as this is how the official transcript
+          calculates the overall average. The higher the credits, the higher the weight of a course
+          would be.
+        </Typography>
+      </Typography>
+      <Typography variant="subtitle2" id="simple-modal-description">
+        Some engineering and Math transcripts are used to test the app. There might be chances that
         your transcript are not supported yet. Feel free to open an{' '}
-        <a
-          href="https://github.com/colelin26/WATranscript/issues"
+        <Link
+          className={classes.link}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
+          href="https://github.com/colelin26/WATranscript/issues"
         >
           issue
-        </a>{' '}
+        </Link>{' '}
         or DM me and I would be happy to help!
       </Typography>
       <br />

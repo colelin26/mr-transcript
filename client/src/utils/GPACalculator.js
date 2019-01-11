@@ -65,8 +65,8 @@ export const calculateAverage = (courses, scale, selectedTag) => {
   if (selectedTag !== undefined) {
     courses.forEach(course => {
       if (course.tag[selectedTag]) {
-        sum += course[scale];
-        count++;
+        sum += course[scale] * course.earned_credit;
+        count += course.earned_credit;
       }
     });
   }

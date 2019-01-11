@@ -2,6 +2,8 @@ const Promise = require('bluebird');
 const extract = Promise.promisify(require('pdf-text-extract'));
 const gpacal = require('./gpaCalculator');
 const jsonGene = require('./JSONgenerator');
+const UWAPI = require('../utils/UWAPI');
+require('dotenv').config();
 
 async function readPDF(filePath) {
   try {
@@ -19,6 +21,15 @@ async function scrapePDF(filePath) {
     gpacal.courses_add_fpo(courses);
     const transcriptJSON = {};
     transcriptJSON.courses = courses;
+    await Promise.each(courses, async course => {
+      const course_data = await UWAPI.getCourseInfo(
+        course.course_letter,
+        course.course_number,
+        process.env.API_KEY
+      );
+      course.url = course_data.url;
+      course.description = course_data.description;
+    });
     transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
     return transcriptJSON;
   } catch (err) {

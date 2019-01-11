@@ -14,11 +14,12 @@ const REGEXES = {
     // the heading information of a term
     termHeader: /Level: +([0-9][A-Z]) +Load: ((?:\w|-)+) +Form Of Study: ([\w]{9}|[\w|-]{5} [\w]{8})/i,
     // course that has a grade
-    courseFinished: /(\w+) +(\d+\w?)\s+([\w &-]+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(\w[\w &-]+)\n)?/,
+    courseFinished: /(\w+) +(\d+\w?)\s+([\(\)\w &-]+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(?:\w[\w &-]+)\n)?/,
     // course that does not have a grade yet
-    courseUnfinished: /(\w+) +(\d+\w?) +([\w &-]+)\n( +(\w[\w &-]+)\n)?/,
+    courseUnfinished: /(\w+) +(\d+\w?) +([\(\)\w &-]+)\n( +(?:\w[\w &-]+)\n)?/,
     gpaAndStanding: /In GPA[\s\S]*Effective \d{2}\/\d{2}\/\d{4}/gi
-  }
+  },
+  invalidExtraField: /In GPA    Earned/
 };
 
 const SELECTORS = {
@@ -62,9 +63,11 @@ function scrapeWithSelector(str, regex, selector, toNumber) {
     }
   }
   if (matched_results[selector['extra_info']] !== undefined) {
-    obj['course_name'] = `${matched_results[selector['course_name']].trim()} ${matched_results[
-      selector['extra_info']
-    ].trim()}`;
+    if (!REGEXES.invalidExtraField.test(matched_results[selector['extra_info']].trim())) {
+      obj['course_name'] = `${matched_results[selector['course_name']].trim()} ${matched_results[
+        selector['extra_info']
+      ].trim()}`;
+    }
   }
   return obj;
 }
@@ -103,7 +106,7 @@ exports.txt_to_JSON = function txt_to_JSON(txt) {
     const scholarshipsAwards = content.match(REGEXES.ScholarshipsAwards)[0];
     const termStrs = content.replace(REGEXES.init.filterOut, '').split(REGEXES.init.termDate);
     if (termStrs[0] === '') termStrs.shift();
-    else throw new Error('Expected the first element is an empty string');
+    else throw new Error('Expected the first element to be an empty string');
     if (termStrs.length % 2 !== 0) throw new Error('Expected terms to have even length');
     let courses = [];
     for (let i = 0; i < termStrs.length; i = i + 2) {

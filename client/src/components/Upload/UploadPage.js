@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import Dragbox from './Dropfile';
 
@@ -35,6 +36,9 @@ const styles = theme => ({
     display: 'flex',
     height: '100%',
     width: '100%'
+  },
+  link: {
+    margin: theme.spacing.unit
   },
   '@media (min-width: 930px)': {
     header: {
@@ -68,20 +72,20 @@ const UploadPage = ({ pdfDropped, classes, message, onDrop, submitPDF, onCancel,
         <Typography component="p">
           Your transcript PDF or transcript Data will not be saved on the server as Heroku
           filesystem is ephemeral. You can also check{' '}
-          <a
+          <Link
             href="https://github.com/colelin26/WATranscript/blob/master/server.js"
             target="_blank"
             rel="noopener noreferrer"
           >
             the source code.
-          </a>
+          </Link>
         </Typography>
         <br />
         <Typography component="p">
           &quot;I want to see a demo.&quot;{' '}
-          <a href="#" onClick={getDemo}>
+          <Link href="#" onClick={getDemo} className={classes.link}>
             Sure...
-          </a>{' '}
+          </Link>{' '}
           Here is the data on my transcript. : )
         </Typography>
       </CardContent>
