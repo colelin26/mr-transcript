@@ -1,6 +1,6 @@
 export default function(values) {
   const errors = {};
-  const requiredFields = ['course_letter', 'course_number'];
+  const requiredFields = ['course_letter', 'course_number', 'earned_credit'];
   requiredFields.forEach(field => {
     if (!values[field]) {
       errors[field] = 'Required';

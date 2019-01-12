@@ -1,3 +1,4 @@
+import request from 'superagent';
 import { makeActionCreator } from '../utils/helper';
 import { enqueueSnackbar } from './Notifier';
 
@@ -7,9 +8,11 @@ export const ADD_TAG = 'ADD_TAG';
 export const REMOVE_TAG = 'REMOVE_TAG';
 export const CONVERT_TO_FPO = 'CONVERT_TO_FPO';
 export const RESTORE_CHANGES = 'RESTORE_CHANGES';
+export const LOAD_COURSE_INFO = 'LOAD_COURSE_INFO';
 
 export const convertToFPO = makeActionCreator(CONVERT_TO_FPO, 'course');
 export const addCourse = makeActionCreator(ADD_COURSE, 'course');
+export const loadCourseInfo = makeActionCreator(LOAD_COURSE_INFO, 'course', 'info');
 export const deleteCourse = makeActionCreator(DELETE_COURSE);
 export const addTag = makeActionCreator(ADD_TAG, 'tag', 'id');
 export const removeTag = makeActionCreator(REMOVE_TAG, 'tag', 'id');
@@ -61,6 +64,7 @@ export const requestRemoveTag = tag => (dispatch, getState) => {
 };
 
 export const requestAddCourse = course => (dispatch, getState) => {
+  course.id = getState().Table.currentData.length;
   dispatch(addCourse(course));
   dispatch(
     enqueueSnackbar({
@@ -70,6 +74,32 @@ export const requestAddCourse = course => (dispatch, getState) => {
       }
     })
   );
+  const req = request
+    .get('/getCourseInfo')
+    .query({ letter: course.course_letter })
+    .query({ number: course.course_number });
+  req.end((err, res) => {
+    if (err) {
+      dispatch(
+        enqueueSnackbar({
+          message: 'Could not link course information with UW API',
+          options: {
+            variant: 'warn'
+          }
+        })
+      );
+      return;
+    }
+    dispatch(
+      enqueueSnackbar({
+        message: 'Successfully linked course information',
+        options: {
+          variant: 'success'
+        }
+      })
+    );
+    dispatch(loadCourseInfo(course, res.body));
+  });
 };
 
 export const requestRestoreChanges = () => (dispatch, getState) => {

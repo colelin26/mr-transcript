@@ -23,14 +23,14 @@ const styles = theme => ({
   }
 });
 
-const CoursesTable = ({ classes, requestAddCourse, id }) => (
+const CoursesTable = ({ classes, requestAddCourse }) => (
   <Paper className={classes.root}>
     <div>
       <CourseToolBar />
       <StatusCard />
       <AddCourse
         onSubmit={values => {
-          requestAddCourse(values, id);
+          requestAddCourse(values);
         }}
       />
     </div>
@@ -43,15 +43,11 @@ const CoursesTable = ({ classes, requestAddCourse, id }) => (
   </Paper>
 );
 
-const mapStateToProps = state => ({
-  id: state.Table.currentData.length + 1
-});
-
 const mapDispatchToProps = {
   requestAddCourse
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(withStyles(styles)(CoursesTable));

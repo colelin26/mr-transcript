@@ -72,7 +72,12 @@ let AddCourse = ({
   percentageGrade
 }) => (
   <Toolbar className={classes.root}>
-    <form onSubmit={handleSubmit} className={classes.container}>
+    <form
+      onSubmit={() => {
+        handleSubmit();
+      }}
+      className={classes.container}
+    >
       <Field name="course_letter" component={renderTextField} label="Course Letter" />
       <Field
         name="course_number"
@@ -138,7 +143,8 @@ AddCourse = connect(
     const confirmedAutoConversion = selector(state, 'auto_fpo');
     const percentageGrade = selector(state, 'percentage_grade');
     const initialValues = {
-      auto_fpo: true
+      auto_fpo: true,
+      earned_credit: 0.5
     };
     return {
       confirmedAutoConversion,

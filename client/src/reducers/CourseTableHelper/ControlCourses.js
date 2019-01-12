@@ -5,7 +5,8 @@ import {
   ADD_TAG,
   REMOVE_TAG,
   ADD_COURSE,
-  RESTORE_CHANGES
+  RESTORE_CHANGES,
+  LOAD_COURSE_INFO
 } from '../../actions/ControlCourses';
 import { SORTING_ORDERS } from '../../actions/CourseTable';
 
@@ -23,6 +24,7 @@ const initialTableState = {
 export const ControlCourses = (TableState = initialTableState, action) => {
   let { currentData, selected } = TableState;
   const { BackupData } = TableState;
+  let course = action.course;
   switch (action.type) {
     case REMOVE_TAG:
       for (const key in selected) {
@@ -50,14 +52,23 @@ export const ControlCourses = (TableState = initialTableState, action) => {
       selected = {};
       return { ...TableState, currentData, selected };
     case ADD_COURSE:
-      let course = action.course;
-      course.id = action.id;
       if (course.percentage_grade) course.percentage_grade = +course.percentage_grade;
       else course.percentage_grade = '';
       if (course.auto_fpo) course.fpo_scale = percentageToFPO(course.percentage_grade);
       else if (course.fpo_scale) course.fpo_scale = +course.fpo_scale;
       delete course.auto_fpo;
       return { ...TableState, currentData: [...currentData, createCourse(course)] };
+    case LOAD_COURSE_INFO:
+      currentData = updateItemInArray(currentData, Number(course.id), item => {
+        item.description = action.info.description;
+        item.url = action.info.url;
+        item.course_name = action.info.title;
+        return item;
+      });
+      return {
+        ...TableState,
+        currentData
+      };
     case RESTORE_CHANGES:
       return {
         ...initialTableState,

@@ -5,7 +5,8 @@ import {
   DELETE_COURSE,
   ADD_TAG,
   REMOVE_TAG,
-  RESTORE_CHANGES
+  RESTORE_CHANGES,
+  LOAD_COURSE_INFO
 } from '../actions/ControlCourses';
 
 import { ControlCourses } from './CourseTableHelper/ControlCourses';
@@ -74,6 +75,7 @@ const Table = (
     case DELETE_COURSE:
     case ADD_COURSE:
     case RESTORE_CHANGES:
+    case LOAD_COURSE_INFO:
       return ControlCourses(state, action);
     default:
       return state;
