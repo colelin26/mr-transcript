@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { Provider } from 'react-redux';
 import thunkMiddleware from 'redux-thunk';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import rootReducer from './reducers';
 import { UPLOAD_MESSAGES } from './actions/UploadPage';
@@ -27,7 +28,8 @@ const initialState = {
     selected: {},
     tagMap: {
       hasGrade: 'grade available',
-      inavg: 'in average'
+      InAvg: 'in average',
+      notInAvg: 'not in avg'
     }
   },
   HomePage: {
@@ -42,11 +44,6 @@ const initialState = {
   }
 };
 
-// const store = composeWithDevTools(
-//   applyMiddleware(thunkMiddleware),
-//   window.devToolsExtension && window.devToolsExtension()
-// )(createStore)(rootReducer, initialState);
-
 const store = createStore(
   rootReducer,
   initialState,
@@ -56,7 +53,9 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <SnackbarProvider>
-      <App />
+      <Router>
+        <Route path="/" component={App} />
+      </Router>
     </SnackbarProvider>
   </Provider>,
   document.getElementById('root')

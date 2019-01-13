@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, BrowserRouter as Router, Route } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
@@ -6,7 +7,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import CoursesTable from '../../containers/CoursesTable';
 import NavBar from '../../containers/HomePage/NavBar';
 import Drawer from '../../containers/HomePage/Drawer';
-import { drawerWidth } from '../../actions/HomePage';
+import {
+  handleDrawerOpen,
+  drawerWidth,
+  HOME_PAGE,
+  COURSE_TABLE,
+  SCHEME_SETTING,
+  GRADUATION_REQUIREMENT,
+  EXPORT_DATA
+} from '../../actions/HomePage';
 
 const styles = theme => ({
   root: {
@@ -37,24 +46,30 @@ const styles = theme => ({
   }
 });
 
-const HomePage = ({ classes, open }) => (
-  <div className={classes.root}>
-    <NavBar />
-    <Drawer />
-    <CssBaseline />
-    <main
-      className={classNames(classes.content, {
-        [classes.contentShift]: open
-      })}
-    >
-      <div className={classes.drawerHeader} />
-      <CoursesTable />
-    </main>
-  </div>
-);
+const HomePage = ({ pdfSubmitted, classes, open }) => {
+  if (!pdfSubmitted) {
+    return <Redirect to="/" />;
+  }
+  return (
+    <div className={classes.root}>
+      <NavBar />
+      <Drawer />
+      <CssBaseline />
+      <main
+        className={classNames(classes.content, {
+          [classes.contentShift]: open
+        })}
+      >
+        <div className={classes.drawerHeader} />
+        <Route path={`/${HOME_PAGE}/${COURSE_TABLE}`} component={CoursesTable} />
+      </main>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  open: state.HomePage.UI.drawerOpen
+  open: state.HomePage.UI.drawerOpen,
+  pdfSubmitted: state.PDFInfo.pdfSubmitted
 });
 
 const StyledHomepage = withStyles(styles)(HomePage);

@@ -6,7 +6,8 @@ import {
   ADD_TAG,
   REMOVE_TAG,
   RESTORE_CHANGES,
-  LOAD_COURSE_INFO
+  LOAD_COURSE_INFO,
+  TOGGLE_TAG
 } from '../actions/ControlCourses';
 
 import { ControlCourses } from './CourseTableHelper/ControlCourses';
@@ -76,6 +77,7 @@ const Table = (
     case ADD_COURSE:
     case RESTORE_CHANGES:
     case LOAD_COURSE_INFO:
+    case TOGGLE_TAG:
       return ControlCourses(state, action);
     default:
       return state;

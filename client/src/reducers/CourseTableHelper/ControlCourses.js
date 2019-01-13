@@ -6,7 +6,8 @@ import {
   REMOVE_TAG,
   ADD_COURSE,
   RESTORE_CHANGES,
-  LOAD_COURSE_INFO
+  LOAD_COURSE_INFO,
+  TOGGLE_TAG
 } from '../../actions/ControlCourses';
 import { SORTING_ORDERS } from '../../actions/CourseTable';
 
@@ -17,7 +18,8 @@ const initialTableState = {
   selected: {},
   tagMap: {
     hasGrade: 'grade available',
-    inavg: 'in average'
+    InAvg: 'in average',
+    notInAvg: 'not in average'
   }
 };
 
@@ -77,6 +79,21 @@ export const ControlCourses = (TableState = initialTableState, action) => {
           ...obj,
           tag: Object.assign({}, obj.tag)
         }))
+      };
+    case TOGGLE_TAG:
+      currentData = updateItemInArray(currentData, Number(action.id), item => {
+        if (action.tag === 'InAvg') {
+          delete item.tag[action.tag];
+          item.tag = Object.assign({}, { ...item.tag, notInAvg: true });
+        } else if (action.tag === 'notInAvg') {
+          delete item.tag[action.tag];
+          item.tag = Object.assign({}, { ...item.tag, InAvg: true });
+        }
+        return item;
+      });
+      return {
+        ...TableState,
+        currentData
       };
     default:
       return TableState;

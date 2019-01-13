@@ -16,7 +16,7 @@ export const defaultSchema = {
 export const createCourse = course => {
   course.tag = {};
   if (Number(course.percentage_grade)) course.tag.hasGrade = true;
-  if (Number(course.percentage_grade) && Number(course.fpo_scale)) course.tag.inavg = true;
+  if (Number(course.percentage_grade) && Number(course.fpo_scale)) course.tag.InAvg = true;
   return Object.assign({}, course);
 };
 

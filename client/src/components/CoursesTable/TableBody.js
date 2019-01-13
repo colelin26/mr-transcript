@@ -73,7 +73,7 @@ const TableBodyComponent = ({
           <TableCell>{n.level}</TableCell>
           <TableCell numeric>{n.earned_credit}</TableCell>
           <TableCell>
-            <TagButton tags={n.tag} />
+            <TagButton tags={n.tag} id={n.id} />
           </TableCell>
         </TableRow>
       );

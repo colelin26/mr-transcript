@@ -94,11 +94,11 @@ const EnhancedTableToolbar = ({
         </Tooltip>
       ) : (
         <div>
-          <Button
+          {/* <Button
             variant="contained"
             className={classes.button}
             onClick={() => {
-              requestAddTag('inavg');
+              requestAddTag('InAvg');
             }}
           >
             Include in Average
@@ -106,10 +106,10 @@ const EnhancedTableToolbar = ({
           <Button
             variant="contained"
             className={classes.button}
-            onClick={() => requestRemoveTag('inavg')}
+            onClick={() => requestRemoveTag('InAvg')}
           >
             Exclude in Average
-          </Button>
+          </Button> */}
           <Tooltip title="Delete the selected course">
             <IconButton aria-label="Delete the selected course" onClick={deleteCourse}>
               <DeleteForever />

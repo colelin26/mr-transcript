@@ -2,6 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
+import { Link } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -10,7 +11,15 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { connect } from 'react-redux';
 
-import { handleDrawerOpen, drawerWidth } from '../../actions/HomePage';
+import {
+  handleDrawerOpen,
+  drawerWidth,
+  HOME_PAGE,
+  COURSE_TABLE,
+  SCHEME_SETTING,
+  GRADUATION_REQUIREMENT,
+  EXPORT_DATA
+} from '../../actions/HomePage';
 
 const styles = theme => ({
   drawer: {
@@ -46,7 +55,7 @@ const AppDrawer = ({ classes, theme, open, handleDrawerOpen }) => (
     </div>
     <Divider />
     <List>
-      <ListItem button key={0}>
+      <ListItem component={Link} to={`/${HOME_PAGE}/${COURSE_TABLE}`} button key={0}>
         <ListItemText primary="Course Table" />
       </ListItem>
       <ListItem button key={1}>

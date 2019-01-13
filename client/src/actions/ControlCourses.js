@@ -9,18 +9,20 @@ export const REMOVE_TAG = 'REMOVE_TAG';
 export const CONVERT_TO_FPO = 'CONVERT_TO_FPO';
 export const RESTORE_CHANGES = 'RESTORE_CHANGES';
 export const LOAD_COURSE_INFO = 'LOAD_COURSE_INFO';
+export const TOGGLE_TAG = 'TOGGLE_TAG';
 
 export const convertToFPO = makeActionCreator(CONVERT_TO_FPO, 'course');
 export const addCourse = makeActionCreator(ADD_COURSE, 'course');
 export const loadCourseInfo = makeActionCreator(LOAD_COURSE_INFO, 'course', 'info');
 export const deleteCourse = makeActionCreator(DELETE_COURSE);
-export const addTag = makeActionCreator(ADD_TAG, 'tag', 'id');
-export const removeTag = makeActionCreator(REMOVE_TAG, 'tag', 'id');
+export const addTag = makeActionCreator(ADD_TAG, 'tag');
+export const removeTag = makeActionCreator(REMOVE_TAG, 'tag');
 export const restoreChanges = makeActionCreator(RESTORE_CHANGES);
+export const toggleTag = makeActionCreator(TOGGLE_TAG, 'tag', 'id');
 
 export const requestAddTag = tag => (dispatch, getState) => {
   const { selected, currentData } = getState().Table;
-  if (tag === 'inavg') {
+  if (tag === 'InAvg') {
     for (const key in selected) {
       if (
         !currentData[key].percentage_grade ||

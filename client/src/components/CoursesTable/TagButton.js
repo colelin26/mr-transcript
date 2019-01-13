@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
+import { toggleTag } from '../../actions/ControlCourses';
 
 const styles = theme => ({
   button: {
@@ -18,7 +19,7 @@ const styles = theme => ({
     flexDirection: 'row'
   }
 });
-let OutlinedButtons = ({ classes, tags, tagMap }) => {
+let OutlinedButtons = ({ classes, tags, tagMap, id, toggleTag }) => {
   const buttons = Object.keys(tags)
     .filter(key => {
       if (key === 'hasGrade') return false;
@@ -26,7 +27,7 @@ let OutlinedButtons = ({ classes, tags, tagMap }) => {
       return false;
     })
     .map(tag => (
-      <Button variant="outlined" className={classes.button}>
+      <Button variant="outlined" className={classes.button} onClick={() => toggleTag(tag, id)}>
         {tagMap[tag]}
       </Button>
     ));
@@ -44,5 +45,5 @@ export default connect(
   state => ({
     tagMap: state.Table.tagMap
   }),
-  null
+  { toggleTag }
 )(OutlinedButtons);

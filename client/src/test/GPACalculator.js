@@ -14,7 +14,7 @@ const TEST_DATA = [
     id: 1,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -33,7 +33,7 @@ const TEST_DATA = [
     id: 2,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.9
   },
@@ -52,7 +52,7 @@ const TEST_DATA = [
     id: 3,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -71,7 +71,7 @@ const TEST_DATA = [
     id: 4,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -90,7 +90,7 @@ const TEST_DATA = [
     id: 5,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -109,7 +109,7 @@ const TEST_DATA = [
     id: 6,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.9
   },
@@ -128,7 +128,7 @@ const TEST_DATA = [
     id: 7,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -147,7 +147,7 @@ const TEST_DATA = [
     id: 8,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.7
   },
@@ -166,7 +166,7 @@ const TEST_DATA = [
     id: 9,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.9
   },
@@ -185,7 +185,7 @@ const TEST_DATA = [
     id: 10,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -204,7 +204,7 @@ const TEST_DATA = [
     id: 11,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -223,7 +223,7 @@ const TEST_DATA = [
     id: 12,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.7
   },
@@ -242,7 +242,7 @@ const TEST_DATA = [
     id: 13,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3.7
   },
@@ -261,7 +261,7 @@ const TEST_DATA = [
     id: 14,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3
   },
@@ -280,7 +280,7 @@ const TEST_DATA = [
     id: 15,
     tag: {
       fgo: false,
-      inavg: false
+      InAvg: false
     }
   },
   {
@@ -298,7 +298,7 @@ const TEST_DATA = [
     id: 16,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 4
   },
@@ -317,7 +317,7 @@ const TEST_DATA = [
     id: 17,
     tag: {
       fgo: true,
-      inavg: true
+      InAvg: true
     },
     fpo_scale: 3
   },
@@ -333,7 +333,7 @@ const TEST_DATA = [
     id: 18,
     tag: {
       fgo: false,
-      inavg: false
+      InAvg: false
     }
   },
   {
@@ -348,7 +348,7 @@ const TEST_DATA = [
     id: 19,
     tag: {
       fgo: false,
-      inavg: false
+      InAvg: false
     }
   }
 ];

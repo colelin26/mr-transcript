@@ -5,7 +5,8 @@ import { toggleAbout } from '../actions/HomePage';
 
 const mapStateToProps = state => ({
   pdfDropped: state.PDFInfo.pdfDropped,
-  message: state.PDFInfo.message
+  message: state.PDFInfo.message,
+  pdfSubmitted: state.PDFInfo.pdfSubmitted
 });
 
 const mapDispatchToProps = {

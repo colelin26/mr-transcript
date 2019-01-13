@@ -45,12 +45,12 @@ exports.courses_add_fpo = function courses_add_fpo(courses) {
 // calculate avg_fpo for given courses
 exports.courses_avg_fpo = function courses_avg_fpo(courses) {
   courses.forEach(course => {
-    if (course_filter(0, 100, false, course, customizedFilter.notInAvg)) course.tag['inavg'] = true;
-    else course.tag['inavg'] = false;
+    if (course_filter(0, 100, false, course, customizedFilter.notInAvg)) course.tag['InAvg'] = true;
+    else course.tag['InAvg'] = false;
   });
   let [sum, count] = [0, 0];
   courses.forEach(course => {
-    if (course.tag['inavg']) {
+    if (course.tag['InAvg']) {
       sum += course.fpo_scale;
       count++;
     }
