@@ -78,6 +78,15 @@ let AddCourse = ({
       }}
       className={classes.container}
     >
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleSubmit}
+        disabled={pristine || submitting}
+        className={classes.button}
+      >
+        Add Course
+      </Button>
       <Field name="course_letter" component={renderTextField} label="Course Subject" />
       <Field
         name="course_number"
@@ -85,7 +94,6 @@ let AddCourse = ({
         label="Course Number"
         type={'number'}
       />
-      <Field name="course_name" component={renderTextField} label="Course Name" />
       <Field
         name="percentage_grade"
         component={renderTextField}
@@ -115,15 +123,6 @@ let AddCourse = ({
       )}
       <Field name="auto_fpo" component={renderCheckbox} label="Auto 4.0 Conversion" />
       <div className={classes.spacer} />
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleSubmit}
-        disabled={pristine || submitting}
-        className={classes.button}
-      >
-        Add Course
-      </Button>
     </form>
   </Toolbar>
 );
