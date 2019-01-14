@@ -13,12 +13,12 @@ const rows = [
     id: 'course_letter',
     numeric: false,
     disablePadding: true,
-    label: 'Course Letter',
+    label: 'Course Subject',
     description: 'English Letter alias for the subject'
   },
   {
     id: 'course_number',
-    numeric: true,
+    numeric: false,
     disablePadding: false,
     label: 'Course Number',
     description: 'Course Number'
@@ -62,7 +62,7 @@ const rows = [
     id: 'tag',
     numeric: false,
     disablePadding: false,
-    label: 'Tags',
+    label: 'Included in Average',
     description: 'The tags the course have, can be customized on this page'
   }
 ];

@@ -78,7 +78,7 @@ let AddCourse = ({
       }}
       className={classes.container}
     >
-      <Field name="course_letter" component={renderTextField} label="Course Letter" />
+      <Field name="course_letter" component={renderTextField} label="Course Subject" />
       <Field
         name="course_number"
         component={renderTextField}

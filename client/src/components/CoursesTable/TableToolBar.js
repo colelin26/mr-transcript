@@ -89,7 +89,7 @@ const EnhancedTableToolbar = ({
       {numSelected === 0 ? (
         <Tooltip title="Reset all changes you have made">
           <Button variant="contained" className={classes.button} onClick={requestRestoreChanges}>
-            RESTORE
+            RESTORE TO TRANSCRIPT
           </Button>
         </Tooltip>
       ) : (
