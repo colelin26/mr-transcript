@@ -82,7 +82,7 @@ let AddCourse = ({
         variant="contained"
         color="primary"
         onClick={handleSubmit}
-        disabled={pristine || submitting}
+        disabled={submitting}
         className={classes.button}
       >
         Add Course

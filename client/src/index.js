@@ -27,9 +27,9 @@ const initialState = {
     order: SORTING_ORDERS.ASC,
     selected: {},
     tagMap: {
-      hasGrade: 'grade available',
-      InAvg: 'in average',
-      notInAvg: 'not in avg'
+      hasGrade: { color: 'primary', content: 'grade available' },
+      InAvg: { color: 'primary', content: 'in average' },
+      notInAvg: { color: 'secondary', content: 'not in avg' }
     }
   },
   HomePage: {

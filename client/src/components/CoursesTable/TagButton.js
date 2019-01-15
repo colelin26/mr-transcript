@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import green from '@material-ui/core/colors/green';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { toggleTag } from '../../actions/ControlCourses';
@@ -27,8 +28,13 @@ let OutlinedButtons = ({ classes, tags, tagMap, id, toggleTag }) => {
       return false;
     })
     .map(tag => (
-      <Button variant="outlined" className={classes.button} onClick={() => toggleTag(tag, id)}>
-        {tagMap[tag]}
+      <Button
+        variant="outlined"
+        color={tagMap[tag].color}
+        className={classes.button}
+        onClick={() => toggleTag(tag, id)}
+      >
+        {tagMap[tag].content}
       </Button>
     ));
   return <div className={classes.container}>{buttons}</div>;

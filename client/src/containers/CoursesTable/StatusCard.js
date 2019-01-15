@@ -39,12 +39,12 @@ const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale, tagMap }) => (
       <Typography component="p">
         4.0 scale GPA of the courses with the tag{' '}
         <Button variant="outlined" className={classes.button}>
-          {tagMap.InAvg}
+          {tagMap.InAvg.content}
         </Button>{' '}
         is {fpo_avg}. <br />
         Percentage scale average of the courses with the tag{' '}
         <Button variant="outlined" className={classes.button}>
-          {tagMap.InAvg}
+          {tagMap.InAvg.content}
         </Button>{' '}
         is {percentage_scale} <br />
       </Typography>
