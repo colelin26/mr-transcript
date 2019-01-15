@@ -46,7 +46,7 @@ const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale, tagMap }) => (
         <Button variant="outlined" className={classes.button}>
           {tagMap.InAvg.content}
         </Button>{' '}
-        is {percentage_scale} <br />
+        is {percentage_scale}. <br />
       </Typography>
     </CardContent>
   </Card>

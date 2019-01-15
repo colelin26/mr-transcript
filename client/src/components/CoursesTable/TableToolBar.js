@@ -25,7 +25,7 @@ const toolbarStyles = theme => ({
     theme.palette.type === 'light'
       ? {
           color: theme.palette.secondary.main,
-          backgroundColor: lighten('#8bc34a', 0.85)
+          backgroundColor: lighten(theme.palette.secondary.light, 0.85)
         }
       : {
           color: theme.palette.text.primary,

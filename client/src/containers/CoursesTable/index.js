@@ -19,7 +19,8 @@ const styles = theme => ({
     minWidth: 1020
   },
   tableWrapper: {
-    overflowX: 'auto'
+    overflow: 'auto',
+    maxHeight: '55vh'
   }
 });
 
