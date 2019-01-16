@@ -136,7 +136,7 @@ const UploadPage = ({
           <div className={classes.buttonRow}>
             <Button variant="contained" className={classes.menuButton} onClick={submitPDF}>
               <Link
-                href="https://github.com/colelin26/WATranscript/blob/master/server.js"
+                href="https://github.com/colelin26/WATranscript"
                 target="_blank"
                 rel="noopener noreferrer"
               >
