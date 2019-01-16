@@ -103,10 +103,10 @@ class AppDrawer extends React.Component {
           >
             <ListItemText primary="GPA Converter Schema" />
           </ListItem>
-          <ListItem button key={2}>
+          {/* <ListItem button key={2}>
             <ListItemText primary="Graduation Requirement Check" />
-          </ListItem>
-          <ListItem button key={3}>
+          </ListItem> */}
+          <ListItem button key={2}>
             <ListItemText primary="Export Data" onClick={this.handleDataExportClick} />
           </ListItem>
         </List>

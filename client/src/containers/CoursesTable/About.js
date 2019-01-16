@@ -50,8 +50,8 @@ let About = ({ classes, aboutOpen, toggleAbout }) => (
         .
         <Typography variant="subtitle2" id="simple-modal-description">
           Earned credits are also taken into the factors as this is how the official transcript
-          calculates the overall average. The higher the credits, the higher the weight of a course
-          would be.
+          calculates the overall average. The higher the credits are, the higher the weight of a
+          course would be.
         </Typography>
       </Typography>
       <Typography variant="subtitle2" id="simple-modal-description">
