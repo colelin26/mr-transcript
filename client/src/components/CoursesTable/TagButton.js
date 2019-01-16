@@ -9,7 +9,7 @@ const styles = theme => ({
   button: {
     margin: '1px',
     height: 'auto',
-    width: 'auto'
+    width: 140
   },
   input: {
     display: 'none'
