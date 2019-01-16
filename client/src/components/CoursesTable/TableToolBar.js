@@ -56,7 +56,7 @@ const EnhancedTableToolbar = ({
   classes,
   requestAddTag,
   requestRemoveTag,
-  deleteCourse,
+  requestDeleteCourse,
   toggleAbout,
   requestRestoreChanges
 }) => (
@@ -111,7 +111,7 @@ const EnhancedTableToolbar = ({
             Exclude in Average
           </Button> */}
           <Tooltip title="Delete the selected course">
-            <IconButton aria-label="Delete the selected course" onClick={deleteCourse}>
+            <IconButton aria-label="Delete the selected course" onClick={requestDeleteCourse}>
               <DeleteForever />
             </IconButton>
           </Tooltip>

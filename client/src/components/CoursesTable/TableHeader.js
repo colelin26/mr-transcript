@@ -63,7 +63,7 @@ const rows = [
     numeric: false,
     disablePadding: false,
     label: 'Included in Average',
-    description: 'The tags the course have, can be customized on this page'
+    description: 'Toggle to include/exclude the course in the average calculation '
   }
 ];
 

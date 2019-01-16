@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { toggleTag } from '../../actions/ControlCourses';

@@ -18,7 +18,7 @@ const styles = {
     transform: 'scale(0.8)'
   },
   title: {
-    fontSize: 14
+    fontSize: 20
   },
   pos: {
     marginBottom: 12
@@ -38,12 +38,12 @@ const UnstyledStatusCard = ({ classes, fpo_avg, percentage_scale, tagMap }) => (
       </Typography>
       <Typography component="p">
         4.0 scale GPA of the courses with the tag{' '}
-        <Button variant="outlined" className={classes.button}>
+        <Button variant="outlined" color="primary" className={classes.button}>
           {tagMap.InAvg.content}
         </Button>{' '}
         is {fpo_avg}. <br />
         Percentage scale average of the courses with the tag{' '}
-        <Button variant="outlined" className={classes.button}>
+        <Button variant="outlined" color="primary" className={classes.button}>
           {tagMap.InAvg.content}
         </Button>{' '}
         is {percentage_scale}. <br />

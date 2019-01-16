@@ -3,7 +3,7 @@ import TableToolBar from '../../components/CoursesTable/TableToolBar';
 import {
   requestAddTag,
   requestRemoveTag,
-  deleteCourse,
+  requestDeleteCourse,
   requestRestoreChanges
 } from '../../actions/ControlCourses';
 import { toggleAbout } from '../../actions/HomePage';
@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   requestAddTag,
   requestRemoveTag,
-  deleteCourse,
+  requestDeleteCourse,
   enqueueSnackbar,
   toggleAbout,
   requestRestoreChanges

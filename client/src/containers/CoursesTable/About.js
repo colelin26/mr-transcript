@@ -24,9 +24,6 @@ const styles = theme => ({
     margin: '1px',
     height: 'auto',
     width: 'auto'
-  },
-  link: {
-    margin: theme.spacing.unit
   }
 });
 
@@ -44,7 +41,6 @@ let About = ({ classes, aboutOpen, toggleAbout }) => (
       <Typography variant="subtitle2" id="simple-modal-description">
         The GPA conversion is based on{' '}
         <Link
-          className={classes.link}
           target="_blank"
           rel="noopener"
           href="https://www.ouac.on.ca/guide/omsas-conversion-table"
@@ -53,7 +49,7 @@ let About = ({ classes, aboutOpen, toggleAbout }) => (
         </Link>
         .
         <Typography variant="subtitle2" id="simple-modal-description">
-          Earned credits are also taken into the factor as this is how the official transcript
+          Earned credits are also taken into the factors as this is how the official transcript
           calculates the overall average. The higher the credits, the higher the weight of a course
           would be.
         </Typography>
@@ -62,7 +58,6 @@ let About = ({ classes, aboutOpen, toggleAbout }) => (
         Some engineering and Math transcripts are used to test the app. There might be chances that
         your transcript are not supported yet. Feel free to open an{' '}
         <Link
-          className={classes.link}
           target="_blank"
           rel="noopener"
           href="https://github.com/colelin26/WATranscript/issues"

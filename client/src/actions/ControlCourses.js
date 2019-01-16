@@ -104,6 +104,18 @@ export const requestAddCourse = course => (dispatch, getState) => {
   });
 };
 
+export const requestDeleteCourse = () => (dispatch, getState) => {
+  dispatch(deleteCourse());
+  dispatch(
+    enqueueSnackbar({
+      message: 'Successfully deleted the selected courses',
+      options: {
+        variant: 'success'
+      }
+    })
+  );
+};
+
 export const requestRestoreChanges = () => (dispatch, getState) => {
   dispatch(restoreChanges());
   dispatch(
