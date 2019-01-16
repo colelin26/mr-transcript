@@ -20,7 +20,7 @@ const REGEXES = {
     gpaAndStanding: /In GPA[\s\S]*Effective \d{2}\/\d{2}\/\d{4}/gi,
     Program: /([ \S]+)\n/
   },
-  invalidExtraField: /In GPA    Earned/
+  invalidExtraField: /In GPA    Earned|Degree Requirement, Not in Average/gi
 };
 
 const SELECTORS = {

@@ -30,6 +30,7 @@ async function scrapePDF(filePath) {
       );
       course.url = course_data.url;
       course.description = course_data.description;
+      course.course_name = course_data.title;
     });
     transcriptJSON.fpo_avg = gpacal.courses_avg_fpo(transcriptJSON.courses);
     return transcriptJSON;
