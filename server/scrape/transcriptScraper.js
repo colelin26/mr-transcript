@@ -17,6 +17,7 @@ async function readPDF(filePath) {
 async function scrapePDF(filePath) {
   try {
     const txt = await readPDF(filePath);
+    if (!(process.env.NODE_ENV === 'production')) console.log(txt);
     const courses = jsonGene.txt_to_JSON(txt);
     gpacal.courses_add_fpo(courses);
     const transcriptJSON = {};

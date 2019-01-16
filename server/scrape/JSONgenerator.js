@@ -14,10 +14,11 @@ const REGEXES = {
     // the heading information of a term
     termHeader: /Level: +([0-9][A-Z]) +Load: ((?:\w|-)+) +Form Of Study: ([\w]{9}|[\w|-]{5} [\w]{8})/i,
     // course that has a grade
-    courseFinished: /(\w+) +(\d+\w?)\s+([\(\)\w &-]+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(?:\w[\w &-]+)\n)?/,
+    courseFinished: /(\w+) +(\d+\w?)\s+(.+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(?:.+)\n)?/,
     // course that does not have a grade yet
-    courseUnfinished: /(\w+) +(\d+\w?) +([\(\)\w &-]+)\n( +(?:\w[\w &-]+)\n)?/,
-    gpaAndStanding: /In GPA[\s\S]*Effective \d{2}\/\d{2}\/\d{4}/gi
+    courseUnfinished: /(\w+) +(\d+\w?) +([\/\(\)\w &-]+)\n( +(?:\w[\/\(\)\w &-]+)\n)?/,
+    gpaAndStanding: /In GPA[\s\S]*Effective \d{2}\/\d{2}\/\d{4}/gi,
+    Program: /([ \S]+)\n/
   },
   invalidExtraField: /In GPA    Earned/
 };
@@ -111,6 +112,7 @@ exports.txt_to_JSON = function txt_to_JSON(txt) {
     let courses = [];
     for (let i = 0; i < termStrs.length; i = i + 2) {
       const date = scrapeWithSelector(termStrs[i], REGEXES.term.termDate, SELECTORS.termDate);
+      if (!(process.env.NODE_ENV === 'production')) console.log(termStrs[i + 1]);
       courses = courses.concat(scrapeTerm(termStrs[i + 1], date));
     }
     courses.forEach((elem, index) => {
