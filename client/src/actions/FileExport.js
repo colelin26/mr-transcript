@@ -1,4 +1,3 @@
-import { makeActionCreator } from '../utils/helper';
 import { enqueueSnackbar } from './Notifier';
 
 const FileSaver = require('file-saver');

@@ -8,13 +8,11 @@ import CoursesTable from '../../containers/CoursesTable';
 import NavBar from '../../containers/HomePage/NavBar';
 import Drawer from '../../containers/HomePage/Drawer';
 import {
-  handleDrawerOpen,
   drawerWidth,
   HOME_PAGE,
   COURSE_TABLE,
   SCHEME_SETTING,
-  GRADUATION_REQUIREMENT,
-  EXPORT_DATA
+  GRADUATION_REQUIREMENT
 } from '../../actions/HomePage';
 
 const styles = theme => ({

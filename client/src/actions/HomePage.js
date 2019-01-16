@@ -7,7 +7,6 @@ export const HOME_PAGE = 'homepage';
 export const COURSE_TABLE = 'coursetable';
 export const SCHEME_SETTING = 'setting';
 export const GRADUATION_REQUIREMENT = 'gradrequirement';
-export const EXPORT_DATA = 'exportdata';
 
 export const handleDrawerOpen = () => ({
   type: TOGGLE_DRAWER

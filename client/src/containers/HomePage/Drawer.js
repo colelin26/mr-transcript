@@ -19,8 +19,7 @@ import {
   HOME_PAGE,
   COURSE_TABLE,
   SCHEME_SETTING,
-  GRADUATION_REQUIREMENT,
-  EXPORT_DATA
+  GRADUATION_REQUIREMENT
 } from '../../actions/HomePage';
 
 import { requestExportCSV, requestExportJSON } from '../../actions/FileExport';
