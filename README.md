@@ -8,8 +8,8 @@ Web application for UW students to scrape transcript data and convert GPA.
 
 ## Usage
 
-1. `yarn && cd client && yarn` to install the environment (A UW
-   API need to be provided for the server to work). This can be done by setting
+1. `yarn && cd client && yarn` to install the packages. A UW
+   API need to be provided for the server to work. This can be done by setting
    up an `.env` file with `API_KEY` as the UWaterloo Open API key.
 2. `yarn dev` to start the project
 
