@@ -26,7 +26,7 @@ export const percentageToFPO = (percentageGrade, schema = defaultSchema) => {
     .sort()
     .reverse();
   for (let i = 0; i < conditions.length; i++) {
-    if (Number(percentageGrade) > Number(conditions[i])) {
+    if (Number(percentageGrade) >= Number(conditions[i])) {
       return schema[conditions[i]];
     }
   }
