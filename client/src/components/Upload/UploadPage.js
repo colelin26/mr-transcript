@@ -13,8 +13,6 @@ import Help from '@material-ui/icons/Help';
 import Dragbox from './Dropfile';
 import About from '../../containers/CoursesTable/About';
 import {
-  handleDrawerOpen,
-  drawerWidth,
   HOME_PAGE,
   COURSE_TABLE,
   SCHEME_SETTING,
@@ -130,7 +128,7 @@ const UploadPage = ({
               <Link onClick={getDemo}>Demo</Link>
             </Button>
             <Typography component="p" className={classes.buttonAlignText}>
-              &quot;I want to see a demo.&quot; Ok..here is the data uploaded from my transcript :)
+              The demo data is scraped from my real transcript.
             </Typography>
           </div>
           <div className={classes.buttonRow}>
