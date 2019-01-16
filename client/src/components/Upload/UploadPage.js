@@ -130,7 +130,7 @@ const UploadPage = ({
               <Link onClick={getDemo}>Demo</Link>
             </Button>
             <Typography component="p" className={classes.buttonAlignText}>
-              &quot;I want to see a demo.&quot; Ok..here is the data updated from my transcript :)
+              &quot;I want to see a demo.&quot; Ok..here is the data uploaded from my transcript :)
             </Typography>
           </div>
           <div className={classes.buttonRow}>
