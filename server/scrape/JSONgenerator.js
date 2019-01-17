@@ -3,7 +3,7 @@ const REGEXES = {
   init: {
     content: /Beginning of Undergraduate Record\s*(\w[\S\s]+\w)\s*End of Undergraduate Unofficial Transcript/i,
     termDate: /((?:Fall|Winter|Spring)\s(?:\d{4}))/gi,
-    filterOut: /University of Waterloo[\s\S]*Ontario\sEducation\sNbr:\s\d+|Milestones[\S\s]*/gi
+    filterOut: /University of Waterloo[ \S]*\s*200[ \S]*\s*Waterloo[ \S]*\s*Undergraduate[ \S]*\sName[ \S]*\s*Student[ \S]*\s*Ontario[ \S]*\d+|Milestones[\S\s]*/gi
   },
 
   Milestones: /(Milestones[\S\s]*)Scholarships and Awards/i,
