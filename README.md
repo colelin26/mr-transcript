@@ -2,8 +2,6 @@
 
 https://www.wa-transcript.com/
 
-Upload your transcript to calculate your 4.0 scale GPA and do a lot of other things!
-
 Web application for UW students to scrape transcript data and convert GPA.
 
 ## Usage
