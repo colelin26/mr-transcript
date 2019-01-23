@@ -123,8 +123,8 @@ const UploadPage = ({
           </Typography>
           <br />
           <div className={classes.buttonRow}>
-            <Button variant="contained" className={classes.menuButton} onClick={submitPDF}>
-              <Link onClick={getDemo}>Demo</Link>
+            <Button variant="contained" className={classes.menuButton} onClick={getDemo}>
+              <Link>Demo</Link>
             </Button>
             <Typography component="p" className={classes.buttonAlignText}>
               The demo data is scraped from my real transcript.
