@@ -5,8 +5,8 @@ export const TOGGLE_ABOUT = 'TOGGLE_ABOUT';
 
 export const HOME_PAGE = 'homepage';
 export const COURSE_TABLE = 'coursetable';
+export const GRADUATION_CHECK = 'graduation_check';
 export const SCHEME_SETTING = 'setting';
-export const GRADUATION_REQUIREMENT = 'gradrequirement';
 
 export const handleDrawerOpen = () => ({
   type: TOGGLE_DRAWER

@@ -88,12 +88,7 @@ let AddCourse = ({
         Add Course
       </Button>
       <Field name="course_letter" component={renderTextField} label="Course Subject" />
-      <Field
-        name="course_number"
-        component={renderTextField}
-        label="Course Number"
-        type={'number'}
-      />
+      <Field name="course_number" component={renderTextField} label="Course Number" />
       <Field
         name="percentage_grade"
         component={renderTextField}

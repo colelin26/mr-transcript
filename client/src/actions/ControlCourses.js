@@ -120,7 +120,7 @@ export const requestRestoreChanges = () => (dispatch, getState) => {
   dispatch(restoreChanges());
   dispatch(
     enqueueSnackbar({
-      message: 'Restored all the changes',
+      message: 'Reverted all the changes',
       options: {
         variant: 'success'
       }

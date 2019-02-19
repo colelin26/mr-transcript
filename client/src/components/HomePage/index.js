@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import CoursesTable from '../../containers/CoursesTable';
+import GraduationCheck from '../../containers/GraduationCheck';
 import NavBar from '../../containers/HomePage/NavBar';
 import Drawer from '../../containers/HomePage/Drawer';
 import {
@@ -12,7 +13,8 @@ import {
   HOME_PAGE,
   COURSE_TABLE,
   SCHEME_SETTING,
-  GRADUATION_REQUIREMENT
+  GRADUATION_REQUIREMENT,
+  GRADUATION_CHECK
 } from '../../actions/HomePage';
 
 const styles = theme => ({
@@ -60,6 +62,7 @@ const HomePage = ({ pdfSubmitted, classes, open }) => {
       >
         <div className={classes.drawerHeader} />
         <Route path={`/${HOME_PAGE}/${COURSE_TABLE}`} component={CoursesTable} />
+        <Route path={`/${HOME_PAGE}/${GRADUATION_CHECK}`} component={GraduationCheck} />
       </main>
     </div>
   );
