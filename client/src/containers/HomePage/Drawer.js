@@ -19,7 +19,8 @@ import {
   HOME_PAGE,
   COURSE_TABLE,
   SCHEME_SETTING,
-  GRADUATION_REQUIREMENT
+  GRADUATION_REQUIREMENT,
+  GRADUATION_CHECK
 } from '../../actions/HomePage';
 
 import { requestExportCSV, requestExportJSON } from '../../actions/FileExport';
@@ -102,11 +103,12 @@ class AppDrawer extends React.Component {
           >
             <ListItemText primary="GPA Converter Schema" />
           </ListItem>
-          {/* <ListItem button key={2}>
-            <ListItemText primary="Graduation Requirement Check" />
-          </ListItem> */}
+
           <ListItem button key={2}>
             <ListItemText primary="Export Data" onClick={this.handleDataExportClick} />
+          </ListItem>
+          <ListItem component={Link} to={`/${HOME_PAGE}/${GRADUATION_CHECK}`} button key={3}>
+            <ListItemText primary="Graduation Requirement Check" />
           </ListItem>
         </List>
         <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={this.handleDataExportClose}>
