@@ -14,6 +14,28 @@ export const createReducer = (initialState, handlers) =>
     return state;
   };
 
+export const createGroup = (requireNum, groupName, coursesName) => {
+  const group = {};
+  group.requireNum = requireNum;
+  group.groupName = groupName;
+  group.courses = [];
+  for (const name of coursesName) {
+    group.courses.push({
+      title: name,
+      passed: false
+    });
+  }
+  return group;
+};
+
+export const createCourseArray = (courseName, inputs) => {
+  const courses = [];
+  for (const input of inputs) {
+    courses.push(courseName(input));
+  }
+  return courses;
+};
+
 export const updateObject = (oldObject, newValues) =>
   // Encapsulate the idea of passing a new object as the first parameter
   // to Object.assign to ensure we correctly copy data instead of mutating

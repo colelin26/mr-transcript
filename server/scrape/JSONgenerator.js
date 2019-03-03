@@ -112,7 +112,6 @@ exports.txt_to_JSON = function txt_to_JSON(txt) {
     let courses = [];
     for (let i = 0; i < termStrs.length; i = i + 2) {
       const date = scrapeWithSelector(termStrs[i], REGEXES.term.termDate, SELECTORS.termDate);
-      if (!(process.env.NODE_ENV === 'production')) console.log(termStrs[i + 1]);
       courses = courses.concat(scrapeTerm(termStrs[i + 1], date));
     }
     courses.forEach((elem, index) => {

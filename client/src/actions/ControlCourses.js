@@ -66,6 +66,7 @@ export const requestRemoveTag = tag => (dispatch, getState) => {
 };
 
 export const requestAddCourse = course => (dispatch, getState) => {
+  course.course_letter = course.course_letter.toUpperCase();
   course.id = getState().Table.currentData.length;
   dispatch(addCourse(course));
   dispatch(

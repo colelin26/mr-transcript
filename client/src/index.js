@@ -10,6 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import rootReducer from './reducers';
 import { UPLOAD_MESSAGES } from './actions/UploadPage';
 import { SORTING_ORDERS } from './actions/CourseTable';
+import CSPlan from './assets/Study Plan/BCS_2017-2018.json';
 import App from './containers/App';
 
 import * as serviceWorker from './serviceWorker';
@@ -23,6 +24,7 @@ const initialState = {
   },
   Table: {
     currentData: [],
+    passedGroup: [],
     orderBy: 'id',
     order: SORTING_ORDERS.ASC,
     selected: {},
@@ -38,6 +40,9 @@ const initialState = {
       drawerOpen: false,
       aboutOpen: false
     }
+  },
+  GraduationCheck: {
+    groups: CSPlan
   },
   Status: {
     fpo_avg: 'not available'

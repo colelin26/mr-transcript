@@ -16,6 +16,7 @@ const initialTableState = {
   orderBy: 'id',
   order: SORTING_ORDERS.ASC,
   selected: {},
+  passedGroup: [],
   tagMap: {
     hasGrade: { color: 'primary', content: 'grade available' },
     InAvg: { color: 'primary', content: 'in average' },
@@ -24,7 +25,7 @@ const initialTableState = {
 };
 
 export const ControlCourses = (TableState = initialTableState, action) => {
-  let { currentData, selected } = TableState;
+  let { currentData, selected, passedGroup } = TableState;
   const { BackupData } = TableState;
   let course = action.course;
   switch (action.type) {
@@ -54,8 +55,9 @@ export const ControlCourses = (TableState = initialTableState, action) => {
       selected = {};
       return { ...TableState, currentData, selected };
     case ADD_COURSE:
-      if (course.percentage_grade) course.percentage_grade = +course.percentage_grade;
-      else course.percentage_grade = '';
+      if (course.percentage_grade) {
+        course.percentage_grade = +course.percentage_grade;
+      } else course.percentage_grade = '';
       if (course.auto_fpo) course.fpo_scale = percentageToFPO(course.percentage_grade);
       else if (course.fpo_scale) course.fpo_scale = +course.fpo_scale;
       delete course.auto_fpo;
@@ -67,9 +69,14 @@ export const ControlCourses = (TableState = initialTableState, action) => {
         item.course_name = action.info.title;
         return item;
       });
+      if (course.percentage_grade >= 60) {
+        passedGroup = passedGroup.slice();
+        passedGroup.push(`${course.course_letter} ${course.course_number}`);
+      }
       return {
         ...TableState,
-        currentData
+        currentData,
+        passedGroup
       };
     case RESTORE_CHANGES:
       return {

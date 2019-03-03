@@ -69,7 +69,8 @@ const Table = (
       }));
       return Object.assign({}, state, {
         BackupData: coursesDup,
-        currentData: action.Transcript.courses
+        currentData: action.Transcript.courses,
+        passedGroup: action.Transcript.passedCourses
       });
     case ADD_TAG:
     case REMOVE_TAG:
