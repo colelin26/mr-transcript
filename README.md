@@ -52,10 +52,14 @@ the weight of a course would be.
 
 ![Alt text](/doc/UI.png)
 
-**Download Scraped Data**
-
-![Alt text](/doc/DownloadData.png)
-
 **Check Graduation Requirement**
 
 ![Alt text](/doc/GraduationRequirement.png)
+
+**Drawer UI**
+
+![Alt text](/doc/UI2.png)
+
+**Download Scraped Data**
+
+![Alt text](/doc/DownloadData.png)
