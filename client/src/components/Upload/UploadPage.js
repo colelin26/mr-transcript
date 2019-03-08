@@ -119,7 +119,7 @@ const UploadPage = ({
             <Link href="https://uwaterloo.ca/quest/" target="_blank" rel="noopener">
               Quest
             </Link>{' '}
-            to instantly receive your 4.0 GPA
+            to instantly receive your 4.0 scale GPA
           </Typography>
           <br />
           <div className={classes.buttonRow}>

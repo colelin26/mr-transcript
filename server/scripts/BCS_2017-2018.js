@@ -76,28 +76,31 @@ const mathCoursesObj = {
   title: '3.5 Math Units:'
 };
 
-const communicationIArr = ' EMLS 101R, EMLS 102R, EMLS 129R, ENGL 109, SPCOM 100, SPCOM 223'.split(
+let communicationIArr = 'EMLS 101R, EMLS 102R, EMLS 129R, ENGL 109, SPCOM 100, SPCOM 223'.split(
   ','
 );
-communicationIArr.forEach(x => x.trim());
+communicationIArr = communicationIArr.map(x => (x = x.trim()));
 console.log(communicationIArr);
 
-const communicationIIArr = 'EMLS 103R, EMLS 104R, EMLS 110R, ENGL 101B, ENGL 108D, ENGL 119, ENGL 209, ENGL 210E, ENGL 210F, ENGL 251A, ENGL 378/MTHEL 300, SPCOM 225, SPCOM 227, SPCOM 228'.split(
+let communicationIIArr = 'EMLS 103R, EMLS 104R, EMLS 110R, ENGL 101B, ENGL 108D, ENGL 119, ENGL 209, ENGL 210E, ENGL 210F, ENGL 251A, ENGL 378/MTHEL 300, SPCOM 225, SPCOM 227, SPCOM 228'.split(
   ','
 );
-communicationIIArr.forEach(x => x.trim());
+communicationIIArr = communicationIIArr.map(x => x.trim());
 console.log(communicationIIArr);
 
 const communicationI = createGroup(1, 'Communication Course List I', communicationIArr);
-const communicationII = createGroup(1, 'Communication Course List II', communicationIIArr);
-const empty8 = createGroup(8, 'Other Non-math courses', [' ' * 10]);
+const communicationII = createGroup(1, 'Communication Course List II (Including I)', [
+  ...communicationIArr,
+  ...communicationIIArr
+]);
+const empty8 = createGroup(8, 'Other Non-math courses', []);
 const nonMathElective = {
   courses: [communicationI, communicationII, empty8],
   title: '5.0 Non-math units'
 };
 
 const elective = {
-  courses: [],
+  courses: [empty8],
   title: '4.0 Elective units'
 };
 
