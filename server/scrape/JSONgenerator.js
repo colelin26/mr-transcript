@@ -12,7 +12,7 @@ const REGEXES = {
     // the date of the courses in a term
     termDate: /(Fall|Winter|Spring)\s(\d{4})/i,
     // the heading information of a term
-    termHeader: /Level: +([0-9][A-Z]) +Load: ((?:\w|-)+) +Form Of Study: ([\w]{9}|[\w|-]{5} [\w]{8})/i,
+    termHeader: /Level: +([0-9][A-Z]) +Load: ((?:\w|-)+) +Form Of Study: ((?:\w| |-)+)/i,
     // course that has a grade
     courseFinished: /(\w+) +(\d+\w?)\s+(.+) +(\d.\d\d) +(\d.\d\d) +(\d+|\w+)\n( +(?:.+)\n)?/,
     // course that does not have a grade yet
