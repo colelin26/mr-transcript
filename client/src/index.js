@@ -35,7 +35,7 @@ const initialState = {
     }
   },
   HomePage: {
-    title: 'WA-Transcript',
+    title: 'Mr. Transcript',
     UI: {
       drawerOpen: false,
       aboutOpen: false

@@ -1,5 +1,5 @@
 {
-  "name": "wa-transcript",
+  "name": "mr-transcript",
   "version": "1.0.0",
   "description": "Web application for UW students to make full usage of transcript",
   "main": "server.js",
@@ -16,6 +16,7 @@
     "url": "git+https://github.com/colelin26/wat-transcript.git"
   },
   "dependencies": {
+    "@material-ui/core": "^4.2.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",

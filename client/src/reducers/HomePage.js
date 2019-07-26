@@ -2,7 +2,7 @@ import { TOGGLE_DRAWER, TOGGLE_ABOUT } from '../actions/HomePage';
 
 const HomePage = (
   state = {
-    title: 'WA-Transcript',
+    title: 'Mr. Transcript',
     UI: {
       drawerOpen: false,
       aboutOpen: false

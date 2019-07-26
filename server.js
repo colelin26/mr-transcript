@@ -62,7 +62,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, () => console.log(`WATranscript started on ${port}!`));
+app.listen(port, () => console.log(`Mr. Transcript started on ${port}!`));
 
 function runScript(scriptPath, callback) {
   // keep track of whether callback has been invoked to prevent multiple invocations

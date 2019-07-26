@@ -93,7 +93,7 @@ const UploadPage = ({
     <div className={`${classes.container} bg`}>
       <Card className={classes.header}>
         <CardContent className={classes.titleBox}>
-          <Typography className={classes.title}>WATranscript</Typography>
+          <Typography className={classes.title}>Mr. Transcript</Typography>
           <Tooltip title="See the instruction of the app">
             <IconButton aria-label="See the instruction of the app" onClick={toggleAbout}>
               <Help />
