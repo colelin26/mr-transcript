@@ -8,6 +8,7 @@ const utils = require('./server/utils/utils');
 const UWAPI = require('./server/utils/UWAPI');
 
 const demoPath = './upload/cole.pdf';
+const productionDemo = require('./server/test/cole.json');
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -36,8 +37,17 @@ app.post('/upload', async (req, res) => {
 });
 
 app.get('/getDemo', async (req, res) => {
-  const pdfJSON = await scraper.scrapePDF(demoPath);
-  return res.json(pdfJSON);
+  if (process.env.NODE_ENV !== 'production') {
+    const pdfJSON = await scraper.scrapePDF(demoPath);
+    fs.writeFile('./server/test/cole.json', JSON.stringify(pdfJSON), function(err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+    return res.json(pdfJSON);
+  } else {
+    return res.json(productionDemo);
+  }
 });
 
 app.get('/getCourseInfo', async (req, res) => {

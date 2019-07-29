@@ -1,7 +1,6 @@
 const UWAPI = require('./UWAPI');
 
 const fs = require('fs');
-
 (async () => {
   try {
     const schedule = await UWAPI.getAllSchedules(process.env.API_KEY);

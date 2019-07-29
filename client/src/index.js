@@ -37,7 +37,7 @@ const initialState = {
   HomePage: {
     title: 'Mr. Transcript',
     UI: {
-      drawerOpen: false,
+      drawerOpen: true,
       aboutOpen: false
     }
   },

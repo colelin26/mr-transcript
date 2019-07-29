@@ -43,7 +43,8 @@ const styles = theme => ({
   buttonRow: {
     flexDirection: 'row',
     display: 'flex',
-    justifyContent: 'flexStart'
+    justifyContent: 'flexStart',
+    width: '35em'
   },
   header: {
     minWidth: 275,
@@ -110,7 +111,7 @@ const UploadPage = ({
               className={classes.button}
               onClick={submitPDF}
             >
-              I am Ready
+              Upload
             </Button>
           )}
 
@@ -141,7 +142,7 @@ const UploadPage = ({
               </Link>
             </Button>
             <Typography component="p" className={classes.buttonAlignText}>
-              Your transcript PDF or transcript data will not be saved by any means.
+              Check the source code on Github
             </Typography>
           </div>
         </CardContent>

@@ -15,7 +15,7 @@ export const exportCSV = () => (dispatch, getState) => {
 
 export const exportJSON = () => (dispatch, getState) => {
   const { currentData } = getState().Table;
-  const blob = new Blob([currentData], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(currentData)], { type: 'application/json' });
   FileSaver.saveAs(blob, 'TranscriptData.json');
 };
 

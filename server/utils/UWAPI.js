@@ -19,6 +19,23 @@ exports.getAllCourses = async key => {
   return res.body.data;
 };
 
+exports.getAllCoursesInfo = async key => {
+  const courses = await exports.getAllCourses(key);
+  console.log(`fetching ${Object.keys(courses).length} courses`);
+  const coursesInfo = [];
+  try {
+    await Promise.each(courses, async (course, index) => {
+      coursesInfo.push(await exports.getCourseInfo(course.subject, course.catalog_number, key));
+      console.log(`fetched ${index + 1} course: ${course.subject}${course.catalog_number}`);
+      await Promise.delay(2000);
+    });
+  } catch (err) {
+    console.log(err);
+    return coursesInfo;
+  }
+  return coursesInfo;
+};
+
 exports.getAllSchedules = async key => {
   const courses = await exports.getAllCourses(key);
   const allSchedules = [];
