@@ -71,7 +71,7 @@ const styles = theme => ({
   },
   '@media (min-width: 930px)': {
     header: {
-      width: '34%'
+      width: '50%'
     }
   }
 });
