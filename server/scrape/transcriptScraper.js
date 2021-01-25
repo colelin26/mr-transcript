@@ -24,14 +24,18 @@ async function scrapePDF(filePath) {
     transcriptJSON.courses = courses;
     transcriptJSON.passedCourses = [];
     await Promise.each(courses, async course => {
-      const course_data = await UWAPI.getCourseInfo(
-        course.course_letter,
-        course.course_number,
-        process.env.API_KEY
-      );
-      course.url = course_data.url;
-      course.description = course_data.description;
-      course.course_name = course_data.title;
+      try {
+        const course_data = await UWAPI.getCourseInfo(
+          course.course_letter,
+          course.course_number,
+          process.env.API_KEY
+        );
+        course.url = course_data.url;
+        course.description = course_data.description;
+        course.course_name = course_data.title;
+      } catch (err) {
+        // do nothing
+      }
       if (course.percentage_grade && course.percentage_grade >= 60)
         transcriptJSON.passedCourses.push(`${course.course_letter} ${course.course_number}`);
     });

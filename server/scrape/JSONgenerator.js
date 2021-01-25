@@ -23,6 +23,7 @@ const REGEXES = {
   invalidExtraField: /In GPA    Earned|Degree Requirement, Not in Average/gi
 };
 
+// matching groupings to corresponding indices
 const SELECTORS = {
   termDate: {
     term: 1,
