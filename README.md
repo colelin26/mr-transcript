@@ -1,6 +1,6 @@
 # WATranscript
 
-https://www.wa-transcript.com/
+https://wa-transcript.herokuapp.com/
 
 Web application for UW students to make study plans, verify graduation requirement and convert
 GPA based on UW transcripts.
